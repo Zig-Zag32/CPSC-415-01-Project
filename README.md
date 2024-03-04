@@ -2,13 +2,21 @@
 This application is designed to serve as a centralized hub for Trinity College students and faculty, consolidating dispersed pieces of information from various websites into one accessible platform. It enables users to easily and quickly find a broad spectrum of information pertinent to academics, teaching, and campus life. Offerings include, but are not limited to, detailed course information, faculty profiles, academic calendars, university policies, and daily menus from dining halls. Our goal with this platform is to enhance the accessibility and transparency of campus-related information, ultimately boosting the satisfaction and engagement of the community members at Trinity College.
 
 This application is planned to be composed of three microservices:
-1. Frontend/UI:     Utilizes the Vue.js framework to provide the user interface and interaction.
-2. Backend Service: Utilizes the Express framework (based on Node.js) to handle application logic and server requests.
-3. Data Storage:    Utilizes a MySQL database for managing and storing data.
+1. Microservice 1: Course Information Service
+- Functionality: Manages course information, including course lists, detailed course information (such as course name, professor, schedule), ratings, and reviews, etc.
+- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
+2. Microservice 2: Professor Information Service
+- Functionality: Provides information about professors, including lists of professors, detailed information (such as professor's name, office hours, ratings, and reviews), etc.
+- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
+3. Microservice 3: Campus Information Service
+- Functionality: Manages and provides campus-related information, such as academic calendars, university policies, daily dining hall menus, etc.
+- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
 
-Additionally, for deployment and management:
-1. Containerization: Utilizes Docker to containerize the above three microservices for ease of deployment and management.
-2. Deployment and Management: Utilizes Google's Kubernetes Service (GKE) for the containerized deployment and management of the microservices.
+Moreover, the application utilizes these tools for additional components:
+1. Frontend/UI: Utilizes the Vue.js framework to provide the user interface and interaction.
+2. Data Storage: Utilizes a MySQL database for managing and storing data.
+3. Containerization: Utilizes Docker to containerize the above three microservices for ease of deployment and management.
+4. Deployment and Management: Utilizes Google's Kubernetes Service (GKE) for the containerized deployment and management of the microservices.
 
 ## Team members
 1. George Zack
