@@ -10,10 +10,10 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 ## Possible Microservices
 
-1. REST food item service, with CRUD operations for the current kitchen stock*
-2. REST recipe service, with CRUD operstions for the recipe book*
-3. Shopping list generator, based on current kitchen stock, possibly powered by an LLM
-4. Recipe recommender based on current kitchen stock
+- [ ] REST food item service, with CRUD operations for the current kitchen stock - George*
+- [ ] REST recipe service, with CRUD operstions for the recipe book - Ibsa*
+- [ ] Shopping list generator, based on current kitchen stock, possibly powered by an LLM - Jeff
+- [ ] Recipe recommender based on current kitchen stock
 
 Database module will store user data on the cloud
 
