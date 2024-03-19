@@ -1,7 +1,7 @@
 # CPSC-415-01-Project: Personal Recipe Book and Kitchen Inventory Tracker
 ### * Indicates MVP
 
-This project is a simple Recipe Book and Kitchen Inventory service. Recipes and food items all have CRUD operations available to the user, and other functionality may include shopping list reccomendations, and recipe reccomendations based on current kitchen inventory. The goal of this project is to help provide a user-friendly centralized place that makes life easier for casual kitchen users.
+This project is a simple Recipe Book and Kitchen Inventory service. Recipes and food items all have CRUD operations available to the user, and other functionality may include shopping list recommendations, and recipe recommendations based on current kitchen inventory. The goal of this project is to help provide a user-friendly centralized place that makes life easier for casual kitchen users.
 
 ## Group Members
 - George Zack
