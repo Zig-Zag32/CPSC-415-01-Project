@@ -1,99 +1,27 @@
-# CPSC-415-01-Project
-This application is designed to serve as a centralized hub for Trinity College students and faculty, consolidating dispersed pieces of information from various websites into one accessible platform. It enables users to easily and quickly find a broad spectrum of information pertinent to academics, teaching, and campus life. Offerings include, but are not limited to, detailed course information, faculty profiles, academic calendars, university policies, and daily menus from dining halls. Our goal with this platform is to enhance the accessibility and transparency of campus-related information, ultimately boosting the satisfaction and engagement of the community members at Trinity College.
+# CPSC-415-01-Project: Personal Recipe Book and Kitchen Inventory Tracker
+### * Indicates MVP
 
-This application is planned to be composed of three microservices:
-1. Microservice 1: Course Information Service
-- Functionality: Manages course information, including course lists, detailed course information (such as course name, professor, schedule), ratings, and reviews, etc.
-- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
-2. Microservice 2: Professor Information Service
-- Functionality: Provides information about professors, including lists of professors, detailed information (such as professor's name, office hours, ratings, and reviews), etc.
-- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
-3. Microservice 3: Campus Information Service
-- Functionality: Manages and provides campus-related information, such as academic calendars, university policies, daily dining hall menus, etc.
-- Technology Stack: Node.js and Express for backend logic, MySQL for data storage.
+This project is a simple Recipe Book and Kitchen Inventory service. Recipes and food items all have CRUD operations available to the user, and other functionality may include shopping list reccomendations, and recipe reccomendations based on current kitchen inventory. The goal of this project is to help provide a user-friendly centralized place that makes life easier for casual kitchen users.
 
-Moreover, the application utilizes these tools for additional components:
-1. Frontend/UI: Utilizes the Vue.js framework to provide the user interface and interaction.
-2. Data Storage: Utilizes a MySQL database for managing and storing data.
-3. Containerization: Utilizes Docker to containerize the above three microservices for ease of deployment and management.
-4. Deployment and Management: Utilizes Google's Kubernetes Service (GKE) for the containerized deployment and management of the microservices.
+## Group Members
+- George Zack
+- Jeff Cui
+- Ibsa Tassew Geleta
 
-## Team members
-1. George Zack
-2. Jeff Cui
-3. We are currently seeking a third team member
+## Possible Microservices
 
-## Estimated modules
-1. Course Module:
-- Display a list of courses offered by each department for each semester.
-- Provide search functionality for users to search courses by keywords.
-- Show detailed information about each course, including course name, professor, schedule, ratings and reviews on rate my professor, etc.
-2. Professor Module:
-- Display a list of professors in each department for each semester.
-- Provide search functionality for users to search professors by keywords.
-- Show detailed information about each professor, including professor's name, office hour, ratings and reviews on rate my professor, etc.
-3. Academic Calendar Module:
-- Display the academic calendar for each semester, including holidays, important dates, etc.
-- Allow users to view the academic calendar for specific semesters.
-4. University Regulations Module:
-- Display the latest student hand book 
-5. Daily Menu Module:
-- Display the daily menu for each dining hall.
-- Allow users to view the Daily Menu for specific dining hall.
+1. REST food item service, with CRUD operations for the current kitchen stock*
+2. REST recipe service, with CRUD operstions for the recipe book*
+3. Shopping list generator, based on current kitchen stock, possibly powered by an LLM
+4. Recipe recommender based on current kitchen stock
 
-## Estimated Languages and Frameworks
-1. Vue.js
-2. Express
-3. MySQL
+Database module will store user data on the cloud
 
-## General Description of the UI
-1. Top Navigation Bar
-- Home
-- Courses
-- Professors
-- Academic Calendar
-- University Regulations
-- Daily Menu
-2. Content Area
-- Home
-  - A picture of the Bantam as the back ground
-  - Breif introduction of the webside 
-  - A Search bar
-- Courses
-  - A picture of the Bantam as the back ground
-  - A list of courses
-  - A Search bar
-- Professors
-  - A picture of the Bantam as the back ground
-  - A list of courses
-  - A Search bar
-- Academic Calendar
-  - A picture of the Bantam as the back ground
-  - A list of Academic Calendars
-  - A Search bar
-- University Regulations
-  - A picture of the Bantam as the back ground
-  - Informations of the student hand book
-  - A Search bar
-- Daily Menu
-  - A picture of the Bantam as the back ground
-  - A list of the daily menu for each dining hall
-  - A Search bar
-3. Footer Section
-- Ways to contact us
+## UI Layout
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-1. 
-```
-
-```
-2. 
-```
-
-```
-
-
-### Prerequisites
-
-
+- Landing page will have centralized buttons to navigate to each microservice.
+- Each microservice will have its own page in the UI. Once the home page is exited, the services will appear in a side bar.
+- REST pages will have four subpages; one for each operation.
+- The search pages will list the contents of the recipe book or kitchen inventory, with searching options displayed above
+- Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
+- The recommendation pages will have a generate button, as well as a display for the result.
