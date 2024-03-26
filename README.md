@@ -10,9 +10,10 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 ## Possible Microservices
 
-- [ ] REST food item service, with CRUD operations for the current kitchen stock - George*
-- [ ] REST recipe service, with CRUD operations for the recipe book - Ibsa*
-- [ ] Recipe recommender based on current kitchen stock, which pulls recipes from SpoonacularAPI - Jeff*
+- [ ] MS 1: REST food item service, with CRUD operations for the current kitchen stock - George*
+- [ ] MS 2: REST recipe service, with CRUD operations for the recipe book - Ibsa*
+- [ ] MS 3: Recipe recommender based on current kitchen stock, which pulls recipes from SpoonacularAPI - Jeff*
+- [ ] MS 4: Headless MS 
 - [ ] Shopping list generator, based on current kitchen stock, possibly powered by an LLM
 
 Database module will store user data on the cloud
