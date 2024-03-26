@@ -15,11 +15,8 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 - [ ] Shopping list generator, based on current kitchen stock, possibly powered by an LLM
 - [ ] Recipe recommender based on current kitchen stock, which pulls recipes from SpoonacularAPI - Jeff*
 
-<<<<<<< HEAD
-Database module will store user data on the cloud  
-![Structure diagram](images/Structure.png)
-=======
 Database module will store user data on the cloud
+![Structure diagram](images/Structure.png)
 
 ## Technologies
 - Microservices: Spring Boot, JavaScript Express
@@ -27,7 +24,6 @@ Database module will store user data on the cloud
 - HTML/CSS/JavaScript
 - LLM: Llama2
 
->>>>>>> 3ca1ced004cd4dd41f27fdd097ef9d0c1bd0f968
 ## UI Layout
 
 - Landing page will have centralized buttons to navigate to each microservice.
