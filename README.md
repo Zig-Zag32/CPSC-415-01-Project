@@ -15,8 +15,8 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 - [ ] Shopping list generator, based on current kitchen stock, possibly powered by an LLM - Jeff
 - [ ] Recipe recommender based on current kitchen stock
 
-Database module will store user data on the cloud
-
+Database module will store user data on the cloud  
+![Structure diagram](images/Structure.png)
 ## UI Layout
 
 - Landing page will have centralized buttons to navigate to each microservice.
@@ -25,3 +25,4 @@ Database module will store user data on the cloud
 - The search pages will list the contents of the recipe book or kitchen inventory, with searching options displayed above
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
 - The recommendation pages will have a generate button, as well as a display for the result.
+
