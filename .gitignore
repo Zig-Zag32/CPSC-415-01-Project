@@ -19,6 +19,8 @@ bin/
 
 ### IntelliJ IDEA ###
 Kitchen-Inventory-Microservice/.idea
+HELP.md
+.idea
 *.iws
 *.iml
 *.ipr
