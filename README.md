@@ -52,6 +52,10 @@ Database module will store user data on the cloud
 ## Milestones
 1. Week 10: 
 2. Week 11: get MVP services working. Not necessarily correctly, but communicating.
+3. Week 12:
+4. Week 13: 
+5. Week 14: 
+6. Week 15(only two days): May 7 Course Project Presentations
 
 ## Getting stared
 ```
