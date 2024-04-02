@@ -11,19 +11,24 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 ## Microservices
 
 - [ ] MS 1: REST food item service(George*). 
-    - With CRUD operations for the current kitchen stock.
+    - With CRUD operations for the current kitchen stock.  
+
 - [ ] MS 2: REST recipe service(Ibsa*).
-    - With CRUD operations for the recipe book.
+    - With CRUD operations for the recipe book.  
+
 - [ ] MS 3: Recipe recommender(Jeff*).
     - Capable of invoking the `read` database methods from MS 1 to access ingredients inventory data.
-    - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 
+    - Generates Recipe based on ingredients inventory data, powered by LLM llama 2  
+
 - [ ] MS 4: Shopping list generator.
     - Capable of invoking the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
     - Capable of invoking the `read` database methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
-    - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)
+    - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
+
 - [ ] MS 5: Headless MS
-    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend. 
+    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend.  
+    
 
 
 Database module will store user data on the cloud
