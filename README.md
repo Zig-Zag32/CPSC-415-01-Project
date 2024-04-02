@@ -28,7 +28,7 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 - [ ] MS 5: Headless MS
     - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend.  
-    
+
 
 
 Database module will store user data on the cloud
@@ -47,7 +47,11 @@ Database module will store user data on the cloud
 - REST pages will have four subpages; one for each operation.
 - The search pages will list the contents of the recipe book or kitchen inventory, with searching options displayed above
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
-- The recommendation pages will have a generate button, as well as a display for the result.
+- The recommendation pages will have a generate button, as well as a display for the result.  
+
+## Milestones
+1. Week 10: 
+2. Week 11: get MVP services working. Not necessarily correctly, but communicating.
 
 ## Getting stared
 ```
