@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-COPY build/libs/REST-Recipe-Service-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/Kitchen-Inventory-Microservice-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
