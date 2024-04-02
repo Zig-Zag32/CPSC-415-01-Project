@@ -8,16 +8,26 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 - Jeff Cui
 - Ibsa Tassew Geleta
 
-## Possible Microservices
+## Microservices
 
-- [ ] MS 1: REST food item service, with CRUD operations for the current kitchen stock - George*
-- [ ] MS 2: REST recipe service, with CRUD operations for the recipe book - Ibsa*
-- [ ] MS 3: Recipe recommender based on current kitchen stock, which pulls recipes from SpoonacularAPI - Jeff*
-- [ ] MS 4: Headless MS 
-- [ ] Shopping list generator, based on current kitchen stock, possibly powered by an LLM
+- [ ] MS 1: REST food item service(George*). 
+    - With CRUD operations for the current kitchen stock.
+- [ ] MS 2: REST recipe service(Ibsa*).
+    - With CRUD operations for the recipe book.
+- [ ] MS 3: Recipe recommender(Jeff*).
+    - Capable of invoking the `read` database methods from MS 1 to access ingredients inventory data.
+    - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 
+- [ ] MS 4: Shopping list generator.
+    - Capable of invoking the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
+    - Capable of invoking the `read` database methods from MS 1 to find our what ingredients we already have.
+    - Required ingredients - Ingredients in stock = List of missing materials. 
+    - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)
+- [ ] MS 5: Headless MS
+    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend. 
+
 
 Database module will store user data on the cloud
-![Structure diagram](images/Structure.png)
+![Structure diagram](images/UML.png)
 
 ## Technologies
 - Microservices: Spring Boot, JavaScript Express
@@ -34,3 +44,11 @@ Database module will store user data on the cloud
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
 - The recommendation pages will have a generate button, as well as a display for the result.
 
+## Getting stared
+```
+
+```
+## Docker
+```
+
+```
