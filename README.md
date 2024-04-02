@@ -21,15 +21,19 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
            ```
            cd Kitchen-Inventory-Microservice
            ```
-        3. Build a docker image of this microservice:
+        3. Run Gradle build:
+           ```
+           ./gradlew build
+           ```
+        4. Build a docker image of this microservice:
            ```
            docker build -t kitchen-inventory-microservice
            ```
-        4. Run this docker image in a container on port 8080:
+        5. Run this docker image in a container on port 8080:
            ```
            docker run -d -p 8080:8080 kitchen-inventory-microservice
            ```
-        5. In a browser, navigate to the visual API:
+        6. In a browser, navigate to the visual API:
            ```
            http://localhost:8080/swagger-ui/index.html
            ```
