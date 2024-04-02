@@ -49,7 +49,7 @@ Database module will store user data on the cloud
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
 - The recommendation pages will have a generate button, as well as a display for the result.  
 
-## Milestones
+## Milestones(34 days left)
 1. Week 10: 
 2. Week 11: get MVP services working. Not necessarily correctly, but communicating.
 3. Week 12:
