@@ -11,7 +11,28 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 ## Microservices
 
 - [ ] MS 1: REST food item service(George*). 
-    - With CRUD operations for the current kitchen stock.  
+    - With CRUD operations for the current kitchen stock.
+    - **To Run This Microservice In a Docker Container**:
+        1. If not done already, clone this repository to a local directory of your choice:
+           ```
+           git clone https://github.com/Zig-Zag32/CPSC-415-01-Project
+           ```
+        2. Navigate to this microservice's directory:
+           ```
+           cd Kitchen-Inventory-Microservice
+           ```
+        3. Build a docker image of this microservice:
+           ```
+           docker build -t kitchen-inventory-microservice
+           ```
+        4. Run this docker image in a container on port 8080:
+           ```
+           docker run -d -p 8080:8080 kitchen-inventory-microservice
+           ```
+        5. In a browser, navigate to the visual API:
+           ```
+           http://localhost:8080/swagger-ui/index.html
+           ```
 
 - [ ] MS 2: REST recipe service(Ibsa*).
     - With CRUD operations for the recipe book.  
@@ -40,6 +61,8 @@ Database module will store user data on the cloud
 - Database: MySQL
 - HTML/CSS/JavaScript
 - LLM: Llama2
+- Docker for Containerization
+- Kubernetes for Container Orchestration
 
 ## UI Layout
 
