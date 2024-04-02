@@ -12,8 +12,8 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI usersMicroserviceOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("REST Recipe Service")
-                        .description("Currently only works as an ingredient database. All ingredient values are required except for the unit, which can hava a null value.")
+                .info(new Info().title("Kitchen Inventory")
+                        .description("Create, read, update, and delete Kitchen Items.")
                         .version("0.0.1-SNAPSHOT"));
     }
 }

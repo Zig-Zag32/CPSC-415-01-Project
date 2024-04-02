@@ -9,14 +9,12 @@ import java.util.Objects;
 @Entity
 public class KitchenItem
 {
-    @NotBlank(message = "Ingredients must be named")
+    @Id
+    @NotBlank(message = "KitchenItems must be named")
     String name;
     String unit;
-    @NotNull(message = "Ingredients must be quantified")
+    @NotNull(message = "KitchenItems must be quantified")
     Float amount;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
 
     public KitchenItem()
     {
@@ -40,7 +38,7 @@ public class KitchenItem
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -60,14 +58,6 @@ public class KitchenItem
         this.amount = amount;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,29 +65,29 @@ public class KitchenItem
         KitchenItem that = (KitchenItem) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(unit, that.unit) &&
-                Objects.equals(amount, that.amount) &&
-                Objects.equals(id, that.id);
+                Objects.equals(amount, that.amount); //&&
+                //Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, unit, amount, id);
+        return Objects.hash(name, unit, amount/*, id*/);
     }
 
     @Override
     public String toString() {
         if(unit != null) {
-            return "Ingredient{" +
+            return "KitchenItem{" +
                     "amount=" + amount +
                     ", unit='" + unit + '\'' +
                     ", name='" + name + '\'' +
-                    ", id=" + id +
+                    /*", id=" + id +*/
                     '}';
         } else {
-            return "Ingredient{" +
+            return "KitchenItem{" +
                     "amount=" + amount +
                     ", name='" + name + '\'' +
-                    ", id=" + id +
+                    /*", id=" + id +*/
                     '}';
         }
     }
