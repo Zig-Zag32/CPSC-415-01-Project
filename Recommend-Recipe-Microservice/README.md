@@ -17,6 +17,16 @@ kubectl port-forward service/ollama 11434:11434
 ```  
 
 ## Getting stared with MS 3
+
+2. Run app.js locally.
+```
+node app
+```
+
+3. Visting the Swagger UI at http://localhost:2001/swagger 
+  
+
+### Getting stared with MS 3 in container(Can't connect to Ollama yet)
 1. Get an image for app.js
 ```
 docker pull jeffyf/app.js:latest
@@ -25,16 +35,7 @@ or
 ```
 docker build -t app.js:latest .
 ```
-2. Run app.js locally.
+2. Get a container for app.js
 ```
-node app
+docker run -d --name app.js -p 2001:2001 jeffyf/app.js:latest
 ```
-
-3. Visting the Swagger UI at http://localhost:2001/swagger 
-  
-    
-
-//2. Get a container for app.js
-//```
-//docker run -d --name app.js -p 2001:2001 jeffyf/app.js:latest
-//```
