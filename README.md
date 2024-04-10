@@ -45,7 +45,7 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - Capable of invoking the `read` database methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2  
 
-- [ ] MS 4: Shopping list generator.
+- [ ] MS 4: Shopping list generator(Jeff*).
     - Capable of invoking the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
     - Capable of invoking the `read` database methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
