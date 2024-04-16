@@ -1,10 +1,4 @@
-package edu.trincoll.restrecipeservice.entities;
-
-import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-
-import java.util.ArrayList;
-import java.util.List;
+package edu.trincoll.kitcheninventorymicroservice.entities;
 
 //@Entity
 public class Recipe //TBI

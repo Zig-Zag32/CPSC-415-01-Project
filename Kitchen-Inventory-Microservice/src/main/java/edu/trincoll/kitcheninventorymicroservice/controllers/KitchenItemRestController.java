@@ -1,7 +1,7 @@
-package edu.trincoll.restrecipeservice.controllers;
+package edu.trincoll.kitcheninventorymicroservice.controllers;
 
-import edu.trincoll.restrecipeservice.dao.KitchenItemRepository;
-import edu.trincoll.restrecipeservice.entities.KitchenItem;
+import edu.trincoll.kitcheninventorymicroservice.dao.KitchenItemRepository;
+import edu.trincoll.kitcheninventorymicroservice.entities.KitchenItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

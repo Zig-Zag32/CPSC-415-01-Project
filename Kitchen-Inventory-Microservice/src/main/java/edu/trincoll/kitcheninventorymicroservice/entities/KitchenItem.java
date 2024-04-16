@@ -1,4 +1,4 @@
-package edu.trincoll.restrecipeservice.entities;
+package edu.trincoll.kitcheninventorymicroservice.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

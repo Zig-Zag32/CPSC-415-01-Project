@@ -1,4 +1,4 @@
-package edu.trincoll.restrecipeservice;
+package edu.trincoll.kitcheninventorymicroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
