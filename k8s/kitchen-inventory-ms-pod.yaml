@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kitchen-inventory-ms-pod
+  namespace: kitchen-inventory-ms
+  labels:
+    name: kitchen-inventory-ms-pod
+spec:
+  containers:
+  - name: kitchen-inventory-ms-pod
+    image: zigzag32/kitchen-inventory-microservice

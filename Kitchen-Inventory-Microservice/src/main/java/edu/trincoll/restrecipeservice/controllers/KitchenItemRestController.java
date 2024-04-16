@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 public class KitchenItemRestController
@@ -62,5 +63,27 @@ public class KitchenItemRestController
         KitchenItem updatedKitchenItem = repository.save(kitchenItem);
 
         return ResponseEntity.ok(updatedKitchenItem);
+    }
+
+    @PostMapping("/kitchenItems")
+    public ResponseEntity<KitchenItem>[] createMultipleNewItems(@RequestBody KitchenItem[] items)
+    {
+        ResponseEntity<KitchenItem>[] addedItems = new ResponseEntity[items.length];
+        int addedItemsIndex = 0;
+
+        for (KitchenItem item : items)
+        {
+            if (repository.findById(item.getName()).equals(Optional.empty()))
+            {
+                item.setAmount((float) 0);
+                repository.save(item);
+                URI location = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                        .path("/{id}")
+                        .buildAndExpand(item.getName())
+                        .toUri();
+                addedItems[addedItemsIndex] = ResponseEntity.created(location).body(item);
+            }
+        }
+        return addedItems;
     }
 }
