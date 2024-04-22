@@ -17,4 +17,5 @@ spec:
         image: jeffyf/apptest
         imagePullPolicy: Always
         ports:
-        - containerPort: 2001
+          - name: inv-port
+            - containerPort: 2001
