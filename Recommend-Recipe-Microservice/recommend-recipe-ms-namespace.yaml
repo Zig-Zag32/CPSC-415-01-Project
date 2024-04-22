@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: recommend-recipe-ms
+  labels:
+    name: recommend-recipe-ms
