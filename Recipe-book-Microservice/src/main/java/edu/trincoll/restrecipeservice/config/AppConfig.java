@@ -22,12 +22,6 @@ public class AppConfig implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        repository.saveAll(
-            List.of(
-                    new KitchenItem(Float.valueOf(3), "Bags", "Spring Beans"),
-                    new KitchenItem(Float.valueOf(2), "Cups", "Java"),
-                    new KitchenItem(Float.valueOf(12), "Bantam Eggs")
-            )
-        ).forEach(System.out::println);
+        
     }
 }
