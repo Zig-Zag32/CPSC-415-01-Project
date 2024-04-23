@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: kitchen-inventory-ms
+  name: krx-kitchen-inventory-ms
   labels:
-    name: kitchen-inventory-ms
+    name: krx-kitchen-inventory-ms

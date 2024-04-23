@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kitchen-inventory-ms
-  Namespace: kitchen-inventory-ms
+  namespace: krx-kitchen-inventory-ms
   labels:
-    name: kitchen-inventory-ms
+    name: krx-kitchen-inventory-ms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: kitchen-inventory-ms
+      name: krx-kitchen-inventory-ms
   template:
     metadata:
       labels:
-        name: kitchen-inventory-ms
+        name: krx-kitchen-inventory-ms
     spec:
       containers:
       - name: kitchen-inventory-ms-container
         image: zigzag32/kitchen-inventory-microservice
         ports: 
-        - name: kitchen-inventory-ms-port
+        - name: krx-port
           containerPort: 8080
         #envFrom:
         #- configMapRef:
