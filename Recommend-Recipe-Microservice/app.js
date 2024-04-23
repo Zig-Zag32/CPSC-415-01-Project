@@ -4,6 +4,9 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Ollama } from 'ollama'; 
 
+import axios from 'axios';
+
+
 const app = express();
 const port = 2001;
 
@@ -26,8 +29,8 @@ const options = {
 }
 
 const specs = swaggerJsdoc(options)
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs))
-app.use(express.json())
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
+app.use(express.json());
 
 
 // ---------------------------------------- Kitchen assistant Ai
@@ -116,6 +119,83 @@ app.post('/KitchenAssistant', async (req, res) => {
 
 
 // ----------------------------------------
+
+//----------------------
+
+/**
+ * @swagger
+ * /KitchenAssistant1:
+ *   post:
+ *     summary: Retrieve a recipe based on kitchen inventory
+ *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
+ *     tags: [Recipe Assistant]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved a recipe recommendation based on the current kitchen inventory.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 answer:
+ *                   type: string
+ *                   description: Recipe recommendation based on the kitchen inventory data retrieved.
+ *                   example: "Recommended dish: Fried Eggs; Time required: 5 minutes; Ingredients needed: two eggs."
+ *       400:
+ *         description: Bad request, for example, if the kitchen inventory data is incomplete or missing.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message indicating the request could not be processed due to missing or incomplete data.
+ *                   example: "Invalid data from kitchen inventory service"
+ *       500:
+ *         description: Internal server error, typically when there is a failure in interacting with the Ollama language model or the microservice.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message indicating there was an issue processing the request.
+ *                   example: "Failed to interact with LLM or retrieve data from microservice"
+ */
+
+app.post('/KitchenAssistant1', async (req, res) => {
+    const ms1Url = 'http://kitchen-inventory-ms-service.kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
+    try {
+        const ms1Response = await axios.get(ms1Url);
+        const kitchenItems = ms1Response.data; // 这里假设response.data已经是对象数组
+
+        // 生成一个描述这些食材的字符串
+        const ingredientsDescription = kitchenItems.map(item => 
+            `${item.quantity} ${item.unit} of ${item.name}`).join(', ');
+
+        const response = await ollama.chat({
+            model: 'llama2', 
+            messages: [
+                { 
+                    role: 'system', 
+                    content: 'Role: kitchen assistant AI. Traits: Recommend recipe that can be cooked according to the ingredients the user has. Scenario: Recommend recipe on an online forum.' 
+                },
+                {
+                    role: 'user', 
+                    content: `I have ${ingredientsDescription}` // 将食材描述发送到OLLAMA
+                }
+            ],
+        });
+        res.send({answer: response.message.content});
+    } catch (error) {
+        console.error('Error during network or LLM interaction:', error);
+        res.status(500).send({error: 'Failed to interact with LLM or fetch data'});
+    }
+});
+
+//----------------------
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
