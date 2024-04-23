@@ -1,7 +1,8 @@
 package edu.trincoll.restrecipeservice.controllers;
 
-import edu.trincoll.restrecipeservice.dao.KitchenItemRepository;
-import edu.trincoll.restrecipeservice.entities.KitchenItem;
+import edu.trincoll.restrecipeservice.dao.RecipeRepository;
+import edu.trincoll.restrecipeservice.entities.Ingredient;
+import edu.trincoll.restrecipeservice.entities.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,55 +13,55 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-public class KitchenItemRestController
+public class RecipeRestController
 {
-    private final KitchenItemRepository repository;
+    private final RecipeRepository repository;
 
     @Autowired
-    public KitchenItemRestController(KitchenItemRepository repository)
+    public RecipeRestController(RecipeRepository repository)
     {
         this.repository = repository;
     }
 
-    @GetMapping("/kitchenItems")
-    public List<KitchenItem> getAllKitchenItems()
+    @GetMapping("/recipes")
+    public List<Recipe> getAllRecipes()
     {
         return repository.findAll();
     }
 
-    @GetMapping("/kitchenItems/{id}")
-    public ResponseEntity<KitchenItem> getKitchenItemsById(@PathVariable String id)
+    @GetMapping("/recipes/{id}")
+    public ResponseEntity<Recipe> getRecipesById(@PathVariable String id)
     {
         return ResponseEntity.of(repository.findById(id));
     }
 
-    @DeleteMapping("/kitchenItems/{id}")
-    public ResponseEntity<KitchenItem> deleteKitchenItemById(@PathVariable String id)
+    @DeleteMapping("/recipes/{id}")
+    public ResponseEntity<Recipe> deleteRecipeById(@PathVariable String id)
     {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/kitchenItems")
-    public ResponseEntity<KitchenItem> createKitchenItem(@RequestBody KitchenItem kitchenItem)
+    @PostMapping("/recipes")
+    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe)
     {
-        repository.save(kitchenItem);
+        repository.save(recipe);
         URI location = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}")
-                .buildAndExpand(kitchenItem.getName())
+                .buildAndExpand(recipe.getName())
                 .toUri();
-        return ResponseEntity.created(location).body(kitchenItem);
+        return ResponseEntity.created(location).body(recipe);
     }
 
-    @PutMapping("/kitchenItems/{id}")
-    public ResponseEntity<KitchenItem> updateKitchenItem(@PathVariable String id, @RequestBody KitchenItem kitchenItemUpdate) {
+    @PutMapping("/recipes/{id}")
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable String id, @RequestBody Recipe recipeUpdate) {
 
-        KitchenItem kitchenItem = repository.findById(id)
+        Recipe recipe = repository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Kitchen Item not found with id " + id));
-        deleteKitchenItemById(id);
+        deleteRecipeById(id);
 
-        KitchenItem updatedKitchenItem = repository.save(kitchenItem);
+        Recipe updatedRecipe = repository.save(recipe);
 
-        return ResponseEntity.ok(updatedKitchenItem);
+        return ResponseEntity.ok(updatedRecipe);
     }
 }

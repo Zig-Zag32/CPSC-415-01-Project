@@ -1,3 +1,4 @@
+package edu.trincoll.restrecipeservice.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

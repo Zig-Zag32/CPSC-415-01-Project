@@ -65,7 +65,7 @@ public class KitchenItemRestController
         return ResponseEntity.ok(updatedKitchenItem);
     }
 
-    @PostMapping("/kitchenItems")
+    /*@PostMapping("/kitchenItems")
     public ResponseEntity<KitchenItem>[] createMultipleNewItems(@RequestBody KitchenItem[] items)
     {
         ResponseEntity<KitchenItem>[] addedItems = new ResponseEntity[items.length];
@@ -85,5 +85,5 @@ public class KitchenItemRestController
             }
         }
         return addedItems;
-    }
+    }*/
 }

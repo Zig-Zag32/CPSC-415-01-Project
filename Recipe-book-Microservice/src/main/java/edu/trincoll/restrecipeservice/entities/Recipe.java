@@ -1,6 +1,6 @@
+package edu.trincoll.restrecipeservice.entities;
 
-
-
+import edu.trincoll.restrecipeservice.entities.Ingredient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
