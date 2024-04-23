@@ -1,4 +1,4 @@
-kind: Namespace
+kind: namespace
 apiVersion: v1
 metadata:
   name: krx-kitchen-inventory-ms

@@ -4,16 +4,16 @@ metadata:
   name: kitchen-inventory-ms
   namespace: krx-kitchen-inventory-ms
   labels:
-    name: krx-kitchen-inventory-ms
+    app: krx-kitchen-inventory-ms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: krx-kitchen-inventory-ms
+      app: krx-kitchen-inventory-ms
   template:
     metadata:
       labels:
-        name: krx-kitchen-inventory-ms
+        app: krx-kitchen-inventory-ms
     spec:
       containers:
       - name: kitchen-inventory-ms-container
