@@ -20,9 +20,9 @@ const options = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'Trincoll Bot',
+            title: 'Recommend-Recipe-Microservice',
             version: '1.0.0',
-            description: 'Try to interact with large language models: 1',
+            description: 'This Microservice gets the stock of the user from Microservice 1 and sends it to LLM llama 2 with a prompt, getting a recipe recommend back which only uses stuff in the stock.',
         }
     },
     apis: ['./app.js'],
@@ -39,7 +39,7 @@ app.use(express.json());
  * /KitchenAssistant:
  *   post:
  *     summary: Continuous dialogue with LLM
- *     tags: [415-1 Group Project]
+ *     tags: [Testing API]
  *     description: API for getting recipe recommendations based on provided ingredients.
  *     requestBody:
  *       required: true
@@ -128,7 +128,7 @@ app.post('/KitchenAssistant', async (req, res) => {
  *   post:
  *     summary: Retrieve a recipe based on kitchen inventory
  *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
- *     tags: [Recipe Assistant]
+ *     tags: [Actual API]
  *     responses:
  *       200:
  *         description: Successfully retrieved a recipe recommendation based on the current kitchen inventory.

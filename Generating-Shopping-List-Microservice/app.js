@@ -91,7 +91,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Shopping List Generator API',
+      title: 'Generating-Shopping-List-Microservice',
       description: 'This API interacts with an external API to generate a shopping list based on provided ingredients.',
       version: '1.0.0',
     },
@@ -108,7 +108,7 @@ const options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 // Swagger-ui-express 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.post('/send-to-api', async (req, res) => {
   try {
