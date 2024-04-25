@@ -166,7 +166,7 @@ app.post('/KitchenAssistant', async (req, res) => {
  */
 
 app.post('/KitchenAssistant1', async (req, res) => {
-    const ms1Url = 'http://kitchen-inventory-ms-service.kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
+    const ms1Url = 'http://krx-kitchen-inventory-ms-service.kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
     try {
         const ms1Response = await axios.get(ms1Url);
         const kitchenItems = ms1Response.data; // 这里假设response.data已经是对象数组

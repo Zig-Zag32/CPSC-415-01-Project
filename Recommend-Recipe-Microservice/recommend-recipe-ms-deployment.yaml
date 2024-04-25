@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jeffyf-app
+  name: ms3
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jeffyf-app
+      app: ms3
   template:
     metadata:
       labels:
-        app: jeffyf-app
+        app: ms3
     spec:
       containers:
-      - name: jeffyf-app
-        image: jeffyf/apptest
+      - name: ms3
+        image: jeffyf/ms3
         imagePullPolicy: Always
         ports:
           - name: inv-port
-            - containerPort: 2001
+            containerPort: 2001
