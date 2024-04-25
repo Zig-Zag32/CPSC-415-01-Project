@@ -1,7 +1,6 @@
 package edu.trincoll.restrecipeservice.config;
 
-import edu.trincoll.restrecipeservice.dao.KitchenItemRepository;
-import edu.trincoll.restrecipeservice.entities.KitchenItem;
+import edu.trincoll.restrecipeservice.dao.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ import java.util.List;
 @Component
 public class AppConfig implements CommandLineRunner
 {
-    private final KitchenItemRepository repository;
+    private final RecipeRepository repository;
 
     @Autowired
-    public AppConfig(KitchenItemRepository repository)
+    public AppConfig(RecipeRepository repository)
     {
         this.repository = repository;
     }

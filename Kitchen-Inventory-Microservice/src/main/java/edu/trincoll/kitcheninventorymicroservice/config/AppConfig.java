@@ -24,9 +24,10 @@ public class AppConfig implements CommandLineRunner
     {
         repository.saveAll(
             List.of(
-                    new KitchenItem(Float.valueOf(3), "Bags", "Spring Beans"),
-                    new KitchenItem(Float.valueOf(2), "Cups", "Java"),
-                    new KitchenItem(Float.valueOf(12), "Bantam Eggs")
+                    new KitchenItem(1F, "Jar", "Salsa"),
+                    new KitchenItem(1.5F, "Pounds", "Ground Beef"),
+                    new KitchenItem(4F, "Tortilla"),
+                    new KitchenItem(1F, "Bag", "Shredded Cheese")
             )
         ).forEach(System.out::println);
     }
