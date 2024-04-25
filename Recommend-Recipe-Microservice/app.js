@@ -91,7 +91,7 @@ app.post('/KitchenAssistant1', async (req, res) => {
             messages: [
                 { 
                     role: 'system', 
-                    content: 'Role: kitchen assistant AI. Traits: Recommend recipe that can be cooked according to the ingredients the user has. Scenario: Recommend recipe on an online forum.' 
+                    content: 'Role: AI Chef. Traits: Recommend recipe that can be cooked according to the ingredients the user has. Scenario: Given the following list of ingredients available in an inventory, recommend a single dish that can be prepared using these items. Provide a detailed, step-by-step recipe for creating the dish, ensuring that each instruction is clear and thorough for someone who might be a beginner in the kitchen.' 
                 },
                 {
                     role: 'user', 

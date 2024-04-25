@@ -18,6 +18,7 @@ spec:
       containers:
       - name: kitchen-inventory-ms-container
         image: zigzag32/kitchen-inventory-microservice
+        imagePullPolicy: Always
         ports: 
         - name: krx-port
           containerPort: 8080
