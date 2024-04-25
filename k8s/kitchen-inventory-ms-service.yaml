@@ -8,7 +8,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: kitchen-inventory-ms
+    app:  krx-kitchen-inventory-ms
   ports:
   - name: krx-port
     port: 8080
