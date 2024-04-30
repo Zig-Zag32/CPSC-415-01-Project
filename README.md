@@ -27,7 +27,7 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
            ```
         4. Build a docker image of this microservice:
            ```
-           docker build -t kitchen-inventory-microservice
+           docker build -t kitchen-inventory-microservice .
            ```
         5. Run this docker image in a container on port 8080:
            ```
