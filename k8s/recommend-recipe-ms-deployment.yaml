@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ms3
+  namespace: krx-recommend-recipe-ms
+  labels:
+    app: ms3
 spec:
   replicas: 1
   selector:
@@ -17,5 +20,5 @@ spec:
         image: jeffyf/ms3
         imagePullPolicy: Always
         ports:
-          - name: inv-port
+          - name: ms3-port
             containerPort: 2001
