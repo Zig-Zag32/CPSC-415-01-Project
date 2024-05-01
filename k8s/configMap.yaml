@@ -4,5 +4,5 @@ kind: ConfigMap
 metadata:
   name: krx-config
 env:
-  -name: krx-kitchen-inventory-ms
-  value: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
+  - name: krx-kitchen-inventory-ms
+    value: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
