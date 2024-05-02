@@ -3,7 +3,6 @@ import express from 'express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Ollama } from 'ollama'; 
-
 import axios from 'axios';
 
 
@@ -12,7 +11,7 @@ const port = 2001;
 
 //change the host to the address of Ollama in K8s
 const ollama = new Ollama({
-    host: 'http://ollama.default.svc.cluster.local:11434' //ollama is not headless so have to go with its IP
+    host: 'http://ollama.default.svc.cluster.local:11434' //
     // host: 'http://10.101.165.41:11434'
   });
 
@@ -40,8 +39,8 @@ app.use(express.json());
  * /KitchenAssistant1:
  *   post:
  *     summary: Retrieve a recipe based on kitchen inventory
- *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
  *     tags: [Actual API]
+ *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
  *     responses:
  *       200:
  *         description: Successfully retrieved a recipe recommendation based on the current kitchen inventory.
@@ -107,8 +106,80 @@ app.post('/KitchenAssistant1', async (req, res) => {
 });
 
 //----------------------
+/**
+ * @swagger
+ * /getRandomRecipes:
+ *   post:
+ *     summary: Get a random recipes from the Spoonacular API
+ *     tags: [Actual API]
+ *     description: Get random recipes based on fixed parameters.
+ *     responses:
+ *       200:
+ *         description:  Successfully retrieved a random recipe.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 recipes:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Recipe'
+ *       500:
+ *         description: Internal server error
+ * components:
+ *   schemas:
+ *     Recipe:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: A unique identifier for the recipe
+ *         title:
+ *           type: string
+ *           description: Name of recipe
+ *         readyInMinutes:
+ *           type: integer
+ *           description: Time requires
+ *         servings:
+ *           type: integer
+ *           description: Quantity
+ *         image:
+ *           type: string
+ *           description: The URL of the recipe image
+ */
+const API_KEY = '87047dd829384f268646bb188a73ccb7';
+app.post('/getRandomRecipes', async (req, res) => {
+    try {
+      const apiResponse = await getRandomRecipes();
+      res.json(apiResponse);
+    } catch (error) {
+      console.error('错误:', error);
+      res.status(500).json({ error: '内部服务器错误' });
+    }
+});
 
-// ---------------------------------------- Kitchen assistant Ai
+// 
+async function getRandomRecipes() {
+    const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`;
+    try {
+      const response = await axios.get(apiUrl, {
+        params: {
+          limitLicense: false,
+          includeNutrition: false,
+          includeTags: false,  
+          excludeTags: false,   
+          number: 1                           
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('API 调用失败:', error);
+      throw error;  
+    }
+}
+
+// ---------------------------------------- For Testing purpose
 /**
  * @swagger
  * /KitchenAssistant:
@@ -199,6 +270,7 @@ app.post('/KitchenAssistant', async (req, res) => {
  * /MS1Response:
  *   post:
  *     summary: Get kitchen items from MS1 service
+ *     tags: [Test]
  *     description: Retrieve kitchen items from MS1 service and send the data as JSON response
  *     responses:
  *       '200':
