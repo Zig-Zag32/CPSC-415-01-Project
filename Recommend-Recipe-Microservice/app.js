@@ -36,10 +36,10 @@ app.use(express.json());
 
 /**
  * @swagger
- * /KitchenAssistant1:
+ * /kitchenAssistant1:
  *   post:
  *     summary: Retrieve a recipe based on kitchen inventory
- *     tags: [Actual API]
+ *     tags: [Production API]
  *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
  *     responses:
  *       200:
@@ -77,7 +77,7 @@ app.use(express.json());
  *                   example: "Failed to interact with LLM or retrieve data from microservice"
  */
 
-app.post('/KitchenAssistant1', async (req, res) => {
+app.post('/kitchenAssistant1', async (req, res) => {
     const ms1Url = 'http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
     try {
         const ms1Response = await axios.get(ms1Url);
@@ -110,12 +110,12 @@ app.post('/KitchenAssistant1', async (req, res) => {
  * @swagger
  * /getRandomRecipes:
  *   post:
- *     summary: Get a random recipes from the Spoonacular API
- *     tags: [Actual API]
- *     description: Get random recipes based on fixed parameters.
+ *     summary: Get a random recipe from the Spoonacular API
+ *     tags: [Production API]
+ *     description: Get a random recipe based on fixed parameters.
  *     responses:
  *       200:
- *         description:  Successfully retrieved a random recipe.
+ *         description: Successfully retrieved a random recipe.
  *         content:
  *           application/json:
  *             schema:
@@ -124,68 +124,103 @@ app.post('/KitchenAssistant1', async (req, res) => {
  *                 recipes:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Recipe'
+ *                     $ref: '#/components/schemas/SimplifiedRecipe'
  *       500:
  *         description: Internal server error
  * components:
  *   schemas:
- *     Recipe:
+ *     SimplifiedRecipe:
  *       type: object
  *       properties:
- *         id:
- *           type: integer
- *           description: A unique identifier for the recipe
  *         title:
  *           type: string
  *           description: Name of recipe
- *         readyInMinutes:
- *           type: integer
- *           description: Time requires
- *         servings:
- *           type: integer
- *           description: Quantity
  *         image:
  *           type: string
  *           description: The URL of the recipe image
+ *         servings:
+ *           type: integer
+ *           description: Number of servings the recipe yields
+ *         readyInMinutes:
+ *           type: integer
+ *           description: Time required to prepare the recipe in minutes
+ *         summary:
+ *           type: string
+ *           description: A brief summary of the recipe
+ *         ingredients:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/SimplifiedIngredient'
+ *           description: An array of simplified ingredient objects
+ *         instructions:
+ *           type: string
+ *           description: The recipe instructions in HTML format
+ *     SimplifiedIngredient:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: The ingredient name
+ *         amount:
+ *           type: number
+ *           description: The ingredient amount
+ *         unit:
+ *           type: string
+ *           description: The ingredient unit
  */
 const API_KEY = '87047dd829384f268646bb188a73ccb7';
+
 app.post('/getRandomRecipes', async (req, res) => {
-    try {
-      const apiResponse = await getRandomRecipes();
-      res.json(apiResponse);
-    } catch (error) {
-      console.error('错误:', error);
-      res.status(500).json({ error: '内部服务器错误' });
-    }
+  try {
+    const apiResponse = await getRandomRecipes();
+    res.json(apiResponse);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error'});
+  }
 });
 
-// 
 async function getRandomRecipes() {
-    const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`;
-    try {
-      const response = await axios.get(apiUrl, {
-        params: {
-          limitLicense: false,
-          includeNutrition: false,
-          includeTags: false,  
-          excludeTags: false,   
-          number: 1                           
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('API 调用失败:', error);
-      throw error;  
-    }
-}
+  const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`;
+  
+  try {
+    const response = await axios.get(apiUrl, {
+      params: {
+        number: 1
+      }
+    });
 
+    // Only keep apart of the return
+    const recipe = response.data.recipes[0];
+    const simplifiedRecipe = {
+      summary: recipe.summary,
+      title: recipe.title,
+      image: recipe.image,
+      servings: recipe.servings,
+      readyInMinutes: recipe.readyInMinutes,
+      ingredients: recipe.extendedIngredients.map(ingredient => ({
+        name: ingredient.name,
+        amount: ingredient.amount,
+        unit: ingredient.unit
+      })),
+      instructions: recipe.instructions
+    };
+
+    return {
+      recipes: [simplifiedRecipe]
+    };
+  } catch (error) {
+    console.error('API call failed:', error);
+    throw error;
+  }
+}
 // ---------------------------------------- For Testing purpose
 /**
  * @swagger
  * /KitchenAssistant:
  *   post:
  *     summary: single dialogue with LLM
- *     tags: [Test]
+ *     tags: [Testing API]
  *     description: API for getting recipe recommendations based on provided ingredients by input.
  *     requestBody:
  *       required: true
@@ -270,7 +305,7 @@ app.post('/KitchenAssistant', async (req, res) => {
  * /MS1Response:
  *   post:
  *     summary: Get kitchen items from MS1 service
- *     tags: [Test]
+ *     tags: [Testing API]
  *     description: Retrieve kitchen items from MS1 service and send the data as JSON response
  *     responses:
  *       '200':
