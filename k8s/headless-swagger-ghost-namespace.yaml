@@ -1,0 +1,6 @@
+kind: namespace
+apiVersion: v1
+metadata:
+  name: krx-headless-swagger-ghost-ms
+  labels:
+    name: krx-headless-swagger-ghost-ms

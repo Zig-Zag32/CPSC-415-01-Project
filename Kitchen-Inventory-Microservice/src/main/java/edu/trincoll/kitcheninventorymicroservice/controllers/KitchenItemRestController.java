@@ -24,9 +24,12 @@ public class KitchenItemRestController
     }
 
     @GetMapping("/kitchenItems")
-    public List<KitchenItem> getAllKitchenItems()
-    {
-        return repository.findAll();
+    public ResponseEntity<List<KitchenItem>> getAllKitchenItems() {
+        List<KitchenItem> kitchenItems = repository.findAll();
+        if (kitchenItems.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(kitchenItems);
     }
 
     @GetMapping("/kitchenItems/{id}")
