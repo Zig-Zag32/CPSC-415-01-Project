@@ -21,6 +21,8 @@ public class HeadlessController
 {
     @Value("${ms1_base_url}")
     private String ms1BaseUrl;
+    @Value("${ms3_base_url}")
+    private String ms3BaseUrl;
 
     private static final Logger log = LoggerFactory.getLogger(HeadlessController.class);
 
