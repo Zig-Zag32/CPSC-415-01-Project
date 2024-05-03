@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headless-swagger-ghost-deployment
+  namespace: krx-headless-swagger-ghost-ms
+  labels:
+    app: krx-headless-swagger-ghost-ms
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: krx-headless-swagger-ghost-ms
+  template:
+    metadata:
+      labels:
+        app: krx-headless-swagger-ghost-ms
+    spec:
+      containers:
+      - name: headless-swagger-ghost-container
+        image: zigzag32/headless-swagger-and-ghost-ms
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - name: krx-ms5-port
+          containerPort: 8090

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: krx-kitchen-inventory-ms
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: krx-kitchen-inventory-ms
@@ -19,6 +19,13 @@ spec:
       - name: kitchen-inventory-ms-container
         image: zigzag32/kitchen-inventory-microservice
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports: 
         - name: krx-port
           containerPort: 8080

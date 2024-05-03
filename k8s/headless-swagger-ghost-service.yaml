@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: krx-headless-swagger-ghost-service
+  name: headless-swagger-ghost-service
   namespace: krx-headless-swagger-ghost-ms
   labels:
-    name: krx-headless-swagger-ghost-service
+    name: headless-swagger-ghost-service
 spec:
   type: ClusterIP
   selector:
