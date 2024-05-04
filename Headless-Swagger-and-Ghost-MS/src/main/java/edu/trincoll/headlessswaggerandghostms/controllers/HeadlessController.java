@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
@@ -42,21 +43,6 @@ public class HeadlessController
     {
         String url = ms1BaseUrl + "/kitchenItems";
         log.info("URL: " + url);
-        /*try
-        {
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<List<KitchenItem>> response = restTemplate.getForEntity(
-                    url,
-                    null,
-                    new ParameterizedTypeReference<List<KitchenItem>>() {
-                    });
-            return response;
-        }
-        catch (Exception e)
-        {
-            log.error("Failed to fetch data from " + url, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }*/
         WebClient client = WebClient.builder()
                 .baseUrl(url)
                 .build();

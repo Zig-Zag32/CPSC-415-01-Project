@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: krx-ingress
+  namespace: krx-headless-swagger-ghost-ms
+spec:
+  defaultBackend:
+    service:
+      name: headless-swagger-ghost-service
+      port:
+        number: 80
