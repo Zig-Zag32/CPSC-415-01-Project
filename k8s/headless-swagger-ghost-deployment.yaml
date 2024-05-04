@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: headless-swagger-ghost-container
-        image: zigzag32/headless-swagger-and-ghost-ms
+        image: zigzag32/headless-swagger-and-ghost-ms:1.0.4
         imagePullPolicy: Always
         resources:
           requests:

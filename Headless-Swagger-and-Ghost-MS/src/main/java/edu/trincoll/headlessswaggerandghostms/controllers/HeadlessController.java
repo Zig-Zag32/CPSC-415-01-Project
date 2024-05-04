@@ -11,8 +11,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -33,23 +38,47 @@ public class HeadlessController
     }
 
     @GetMapping("/kitchenItems")
-    public ResponseEntity<List<KitchenItem>> getAllKitchenItems(RestTemplate restTemplate)
+    public Mono<List<KitchenItem>> getAllKitchenItems()
     {
         String url = ms1BaseUrl + "/kitchenItems";
-        try
+        log.info("URL: " + url);
+        /*try
         {
-            return restTemplate.exchange(
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<List<KitchenItem>> response = restTemplate.getForEntity(
                     url,
-                    HttpMethod.GET,
                     null,
                     new ParameterizedTypeReference<List<KitchenItem>>() {
-                    }
-            );
+                    });
+            return response;
         }
         catch (Exception e)
         {
             log.error("Failed to fetch data from " + url, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        }*/
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<KitchenItem>>() {
+                });
+    }
+
+    @GetMapping("/kitchenItems/{id}")
+    public Mono<KitchenItem> getKitchenItemById(@PathVariable String id)
+    {
+        String url = ms1BaseUrl + "/kitchenItems/" + id;
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(KitchenItem.class);
     }
 }
