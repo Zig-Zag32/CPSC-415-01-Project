@@ -9,13 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -64,6 +63,51 @@ public class HeadlessController
         return client
                 .get()
                 .uri(url)
+                .retrieve()
+                .bodyToMono(KitchenItem.class);
+    }
+
+    @PostMapping("/kitchenItems")
+    public Mono<KitchenItem> createKitchenItem(@RequestBody KitchenItem kitchenItem)
+    {
+        String url = ms1BaseUrl + "/kitchenItems";
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client.post()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(kitchenItem))
+                .retrieve()
+                .bodyToMono(KitchenItem.class);
+    }
+
+    @DeleteMapping("/kitchenItems/{id}")
+    public Mono<Void> deleteKitchenItem(@PathVariable String id)
+    {
+        String url = ms1BaseUrl + "/kitchenItems/" + id;
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+
+        return client.delete()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(Void.class);
+    }
+
+    @PutMapping("/kitchenItems/{id}")
+    public Mono<KitchenItem> updateKitchenItem(@PathVariable String id, @RequestBody KitchenItem kitchenItem)
+    {
+        String url = ms1BaseUrl + "/kitchenItems/" + id;
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+
+        return client.put()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(kitchenItem))
                 .retrieve()
                 .bodyToMono(KitchenItem.class);
     }

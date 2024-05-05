@@ -61,7 +61,8 @@ public class KitchenItemRestController
 
         KitchenItem kitchenItem = repository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Kitchen Item not found with id " + id));
-        deleteKitchenItemById(id);
+        kitchenItem.setUnit(kitchenItemUpdate.getUnit());
+        kitchenItem.setAmount(kitchenItemUpdate.getAmount());
 
         KitchenItem updatedKitchenItem = repository.save(kitchenItem);
 
