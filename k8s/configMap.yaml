@@ -9,7 +9,7 @@ metadata:
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms:8080"
-  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:8080"
+  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
 
@@ -23,7 +23,7 @@ metadata:
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms:8080"
-  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:8080"
+  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
 
@@ -37,7 +37,7 @@ metadata:
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms:8080"
-  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:8080"
+  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
 
@@ -51,7 +51,7 @@ metadata:
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms:8080"
-  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:8080"
+  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
 
@@ -65,6 +65,6 @@ metadata:
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms:8080"
-  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:8080"
+  ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
