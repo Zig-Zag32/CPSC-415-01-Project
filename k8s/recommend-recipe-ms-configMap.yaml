@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: service-urls
+  name: ms3-configMap
   namespace: krx-recommend-recipe-ms
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080"

@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: service-urls
-  namespace: 
+  name: ms3-configMap
+  namespace: XXX
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms.svc.cluster.local:8080"
