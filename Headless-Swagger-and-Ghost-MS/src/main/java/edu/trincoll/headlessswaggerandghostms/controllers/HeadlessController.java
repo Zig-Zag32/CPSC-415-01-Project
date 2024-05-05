@@ -111,4 +111,10 @@ public class HeadlessController
                 .retrieve()
                 .bodyToMono(KitchenItem.class);
     }
+
+    @GetMapping("/health")
+    public String Health()
+    {
+        return "Personal Recipe Book and Kitchen Inventory Tracker";
+    }
 }

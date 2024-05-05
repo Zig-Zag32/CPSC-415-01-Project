@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: headless-swagger-ghost-container
-        image: zigzag32/headless-swagger-and-ghost-ms:1.0.5
+        image: zigzag32/headless-swagger-and-ghost-ms:1.0.7
         imagePullPolicy: Always
         resources:
           requests:
@@ -29,3 +29,10 @@ spec:
         ports:
         - name: krx-ms5-port
           containerPort: 8090
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          failureThreshold: 2
+          initialDelaySeconds: 15
+          periodSeconds: 60
