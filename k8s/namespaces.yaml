@@ -1,0 +1,41 @@
+# MS1
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: krx-kitchen-inventory-ms
+  labels:
+    name: krx-kitchen-inventory-ms
+---
+# MS 2
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: krx-recipe-book-ms
+  labels:
+    name: krx-recipe-book-ms
+---
+# MS3
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: krx-recommend-recipe-ms
+  labels:
+    name: krx-recommend-recipe-ms
+
+---
+# MS 4
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: krx-generating-shopping-list-ms
+  labels:
+    name: krx-generating-shopping-list-ms
+
+---
+# MS 5
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: krx-headless-swagger-ghost-ms
+  labels:
+    name: krx-headless-swagger-ghost-ms
