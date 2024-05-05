@@ -1,6 +1,0 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: krx-ollama-helm
-  labels:
-    name: krx-ollama-helm

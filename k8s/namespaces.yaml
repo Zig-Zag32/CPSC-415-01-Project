@@ -39,3 +39,12 @@ metadata:
   name: krx-headless-swagger-ghost-ms
   labels:
     name: krx-headless-swagger-ghost-ms
+
+---
+# Ollama Helm Chart
+# kind: Namespace
+# apiVersion: v1
+# metadata:
+#  name: krx-ollama-helm
+#  labels:
+#    name: krx-ollama-helm
