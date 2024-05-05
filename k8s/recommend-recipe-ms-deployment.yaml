@@ -36,6 +36,6 @@ spec:
           - name: MS1_BASE_URL
             valueFrom:
               configMapKeyRef:
-                name: ms3-configMap
+                name: ms3-configmap
                 key: ms1-url
   
