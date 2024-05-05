@@ -26,5 +26,16 @@ spec:
           - name: OPENAI_API_KEY
             valueFrom:
               secretKeyRef:
-                name: openai-api-key  # Secret 对象的名称
-                key: api-key           # Secret 中的键
+                name: ms3-secret         # Secret 对象的名称
+                key: openai-api-key      # Secret 中的键
+          - name: SPOONACULAR_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ms3-secret          # Secret 名称
+                key: spoonacular-api-key  # 对应的键名
+          - name: MS1_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: ms1-url
+  

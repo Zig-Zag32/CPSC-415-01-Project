@@ -1,9 +1,8 @@
-# All MSs suppose to share this configMap file. Defines all env and base URL here
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: service-urls
-  namespace: 
+  namespace: krx-recommend-recipe-ms
 data:
   ms1-url: "http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080"
   ms2-url: "http://recipe-book-ms-service.krx-recipe-book-ms.svc.cluster.local:8080"
