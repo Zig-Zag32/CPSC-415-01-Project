@@ -22,3 +22,9 @@ spec:
         ports:
           - name: ms3-port
             containerPort: 2001
+        env:
+          - name: OPENAI_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: openai-api-key  # Secret 对象的名称
+                key: api-key           # Secret 中的键

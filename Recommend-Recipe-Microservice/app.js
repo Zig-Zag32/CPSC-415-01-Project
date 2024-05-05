@@ -4,7 +4,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Ollama } from 'ollama'; 
 import axios from 'axios';
-
+import OpenAI from 'openai';
 
 const app = express();
 const port = 2001;
@@ -16,20 +16,13 @@ const ollama = new Ollama({
     // host: 'http://10.101.165.41:11434'
   });
 
-
-
-
-//////////////////
-import OpenAI from 'openai';
-
+  
 // 配置 OpenAI 客户端
-const openai = new OpenAI({
-    apiKey: 'sk-proj-0FiXrOD70NRmBYBR1IRbT3BlbkFJvADdeUBXWFpsErCaEbKe' // 使用你的硬编码 API 密钥
-});
 
-
-////////////////////////
-
+const openaiApiKey = process.env.OPENAI_API_KEY; // 从环境变量中读取 API Key
+  const openai = new OpenAI({
+    apiKey: openaiApiKey,
+  });
 
 
 
@@ -59,7 +52,8 @@ app.use(express.json());
  * /getRandomRecipes:
  *   post:
  *     summary: Get a random recipe from the Spoonacular API
- *     tags: [Production API]
+ *     tags:
+ *       - Production API
  *     description: Get a random recipe based on fixed parameters.
  *     responses:
  *       200:
@@ -117,7 +111,7 @@ app.use(express.json());
  *           description: The ingredient unit
  */
 const API_KEY = '87047dd829384f268646bb188a73ccb7';
-
+//const spoonacularApiKey = process.env.SPOONACULAR_API_KEY;
 app.post('/getRandomRecipes', async (req, res) => {
   try {
     const apiResponse = await getRandomRecipes();
@@ -129,7 +123,7 @@ app.post('/getRandomRecipes', async (req, res) => {
 });
 
 async function getRandomRecipes() {
-  const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`;
+  const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`;//next step: spoonacularApiKey
   
   try {
     const response = await axios.get(apiUrl, {
@@ -163,80 +157,67 @@ async function getRandomRecipes() {
   }
 }
 
+//--------------
+
 /**
  * @swagger
- * /openaiRecipe:
+ * /openaiRecipe1:
  *   post:
- *     summary: Generate a recipe using the OpenAI GPT model
- *     tags: [Production API]
- *     description: Retrieve the user's kitchen inventory data and generate a recommended recipe using the OpenAI GPT model.
+ *     summary: Generate a recipe using OpenAI and ingredients from the kitchen inventory service
+ *     tags:
+ *       - Production API
+ *     description: Fetches kitchen inventory data from another service, and uses OpenAI to generate a recipe based on the available ingredients.
  *     responses:
  *       200:
- *         description: Successfully generated and retrieved the recommended recipe.
+ *         description: Successfully generated the recipe
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 recipe:
+ *                 text:
  *                   type: string
- *                   description: The content of the recommended recipe
- *                   example: "Recommended dish: Pasta. Ingredients needed: tomatoes, pasta. Instructions: Step 1..."
- *       400:
- *         description: Missing or malformed request parameters.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: string
- *                   example: 'Invalid data from kitchen inventory service'
- *                   description: Incorrect request parameters provided.
+ *                   description: The generated recipe text
  *       500:
- *         description: Internal server error.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: string
- *                   example: 'Failed to interact with OpenAI'
- *                   description: Error while interacting with the OpenAI service.
+ *         description: Server error
  */
+app.post('/openaiRecipe1', async (req, res) => {
+    const ms1Url = 'http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
+    try {
+        // 获取厨房库存数据
+        const ms1Response = await axios.get(ms1Url);
+        console.log('Received data from MS1:', ms1Response.data);
+        
+        // 检查库存数据是否为空或无效
+        const inventory = ms1Response.data;
+        const userContent = Array.isArray(inventory) && inventory.length > 0
+            ? `Ingredients: ${inventory.map(item => item.name).join(', ')}.`
+            : 'Your fridge is empty!';
 
-app.post('/openaiRecipe', async (req, res) => {
-  const ms1Url = 'http://kitchen-inventory-ms-service.krx-kitchen-inventory-ms.svc.cluster.local:8080/kitchenItems';
-  try {
-      // 获取来自其他微服务的厨房库存数据
-      const ms1Response = await axios.get(ms1Url);
-      const kitchenItems = JSON.stringify(ms1Response.data); // 将获取的数据转换成字符串
+        // 与 OpenAI 模型交互
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [
+                {
+                    role: 'system',
+                    content: 'Role: kitchen assistant AI. Traits: Recommend recipe that can be cooked according to the ingredients the user has. Scenario: Recommend recipe on an online forum. Example dialogue: User: I have two eggs. Kitchen assistant AI: Recommended dish: Fried Eggs; Time required: 5 minutes; Ingredients: one or more eggs. Directions: Step 1: In a small nonstick over medium heat, melt butter (or heat oil). Crack egg into pan. Cook 3 minutes, or until white is set. Step 2: Flip and cook 2 to 3 minutes more, until yolk is completely set.'
+                },
+                {
+                    role: 'user',
+                    content: userContent
+                }
+            ],
+            model: 'gpt-3.5-turbo'
+        });
 
-      // 构建 OpenAI API 请求
-      const response = await openai.createChatCompletion({
-          model: 'gpt-4',
-          messages: [
-              {
-                  role: 'system',
-                  content: 'You are an AI kitchen assistant who provides recipes based on available ingredients.'
-              },
-              {
-                  role: 'user',
-                  content: `Given the following kitchen inventory: ${kitchenItems}, recommend a dish and provide a step-by-step recipe.`
-              }
-          ]
-      });
-
-      // 返回生成的菜谱
-      const generatedRecipe = response.data.choices[0].message.content;
-      res.json({ recipe: generatedRecipe });
-  } catch (error) {
-      console.error('Failed to interact with OpenAI:', error);
-      res.status(500).json({ error: 'Failed to interact with OpenAI' });
-  }
+        // 获取生成的菜谱
+        console.log('Received OpenAI response:', chatCompletion);
+        const generatedText = chatCompletion.choices[0].message.content.trim();
+        res.json({ text: generatedText });
+    } catch (error) {
+        console.error('Error:', error.message, error.response?.data);
+        res.status(500).json({ error: '发生错误' });
+    }
 });
-
 
 
 // ----------------------------------------------------------------------------------- For Testing purpose
@@ -245,7 +226,8 @@ app.post('/openaiRecipe', async (req, res) => {
  * /KitchenAssistant:
  *   post:
  *     summary: single dialogue with LLM
- *     tags: [Testing API]
+ *     tags:
+ *       - Testing API
  *     description: API for getting recipe recommendations based on provided ingredients by input.
  *     requestBody:
  *       required: true
@@ -330,7 +312,8 @@ app.post('/KitchenAssistant', async (req, res) => {
  * /MS1Response:
  *   post:
  *     summary: Get kitchen items from MS1 service
- *     tags: [Testing API]
+ *     tags:
+ *       - Testing API
  *     description: Retrieve kitchen items from MS1 service and send the data as JSON response
  *     responses:
  *       '200':
@@ -381,7 +364,8 @@ app.post('/MS1Response', async (req, res) => {
  * /kitchenAssistant1:
  *   post:
  *     summary: Retrieve a recipe based on kitchen inventory
- *     tags: [Testing API]
+ *     tags:
+ *       -  Testing API
  *     description: This endpoint retrieves kitchen inventory items from Microservice 1 and uses them to request a recipe recommendation from the Ollama language model.
  *     responses:
  *       200:
@@ -446,7 +430,72 @@ app.post('/kitchenAssistant1', async (req, res) => {
       res.status(500).send({error: 'Failed to interact with LLM or fetch data'});
   }
 });
+//--------------
+/**
+ * @swagger
+ * /generate:
+ *   post:
+ *     summary: Generate a recipe based on provided ingredients using gpt-3.5-turbo from external API
+ *     tags:
+ *       - Testing API
+ *     requestBody:
+ *       description: A list of ingredients
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               foodList:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: List of ingredients
+ *     responses:
+ *       200:
+ *         description: Successfully generated the recipe
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 text:
+ *                   type: string
+ *                   description: Generated recipe text
+ *       500:
+ *         description: Server error
+ */
+app.post('/generate', async (req, res) => {
+    const { foodList } = req.body;
 
+    try {
+        // 检查 foodList 是否为空，并设置默认值
+        const userContent = foodList && foodList.length > 0 ? `Ingredients: ${foodList.join(', ')}.` : '两个鸡蛋。';
+
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [
+                {
+                    role: 'system',
+                    content: 'Role: kitchen assistant AI. Traits: Recommend recipe that can be cooked according to the ingredients the user has. Scenario: Recommend recipe on an online forum. Example dialogue: User: I have two eggs. kitchen assistant AI: Recommended dish: Fried Eggs; Time required: 5 minus; Ingredients: one or more eggs. Directions: Step 1: In a small nonstick over medium heat, melt butter (or heat oil). Crack egg into pan. Cook 3 minutes, or until white is set. Step 2: Flip and cook 2 to 3 minutes more, until yolk is completely set'
+                },
+                {
+                    role: 'user',
+                    content: userContent
+                }
+            ],
+            model: 'gpt-3.5-turbo',
+        });
+
+        // 打印完整的响应以查看
+        console.log(JSON.stringify(chatCompletion, null, 2));
+
+        const generatedText = chatCompletion.choices[0].message.content.trim();
+        res.json({ text: generatedText });
+    } catch (error) {
+        console.error('Error:', error.message, error.response?.data);
+        res.status(500).json({ error: '发生错误' });
+    }
+});
 //--------------
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
