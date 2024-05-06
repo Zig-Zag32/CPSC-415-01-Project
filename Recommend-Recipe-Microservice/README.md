@@ -13,11 +13,8 @@ helm install ollama /"Path to your CPSC 415-01 Project folder"/CPSC-415-01-Proje
 ```  
 Replace "Path to your CPSC 415-01 Project folder" to the actual path please.
 
-3. Deploy MS3 on k8s:
-```
-kubectl apply -f deployment.yaml                          
-kubectl apply -f service.yaml
-```
+3. Deploy MS3 on k8s following instructions in k8s
+
 4. Connect your local port with the inner port of the container.
 ```
 kubectl port-forward service/jeffyf-app-service 2001:2001
