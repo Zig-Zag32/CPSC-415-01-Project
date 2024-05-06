@@ -58,10 +58,13 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 
 Component Diagram:
-![Component Diagram](images/componentUML.png)
+![Component Diagram](images/componentUML.png)  
 
 Configuration Diagram:
-![Configuration Diagram](images/configurationUML.png)
+![Configuration Diagram](images/configurationUML.png)  
+
+Ollama on Cluster:
+![ollama](images/ollama.png)
 
 ## Technologies
 - Microservices: Spring Boot, Node.js
@@ -71,7 +74,6 @@ Configuration Diagram:
 - Kubernetes for Container Orchestration
 
 ## UI Layout
-
 - Landing page will have centralized buttons to navigate to each microservice.
 - Each microservice will have its own page in the UI. Once the home page is exited, the services will appear in a side bar.
 - REST pages will have four subpages; one for each operation.
