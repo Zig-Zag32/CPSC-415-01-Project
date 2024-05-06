@@ -57,8 +57,10 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 
 
-
+Component Diagram:
 ![Component Diagram](images/componentUML.png)
+
+Configuration Diagram:
 ![Configuration Diagram](images/configurationUML.png)
 
 ## Technologies
