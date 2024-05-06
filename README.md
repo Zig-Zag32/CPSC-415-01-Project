@@ -27,8 +27,9 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
-- [ ] MS 5: Headless MS  
-    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend (Ghost).  
+- [ ] MS 5: Swagger Interface  
+    - MS 5 is a microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs in Swagger UI.  
+    - MS 5 is able to call the Ghost API (internal API) to post blogs based on recommended recipes.
 
 
 Component Diagram:
