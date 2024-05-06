@@ -58,8 +58,9 @@ public class RecipeRestController
 
         Recipe recipe = repository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Kitchen Item not found with id " + id));
-        deleteRecipeById(id);
-
+        recipe.setSteps(recipeUpdate.getSteps());
+        recipe.setIngredientList(recipeUpdate.getIngredientList());
+        recipe.setName(recipeUpdate.getName());
         Recipe updatedRecipe = repository.save(recipe);
 
         return ResponseEntity.ok(updatedRecipe);

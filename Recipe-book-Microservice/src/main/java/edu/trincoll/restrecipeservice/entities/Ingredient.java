@@ -6,7 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Objects;
 
-@Entity
+public record Ingredient(String description) {
+}
+/*@Entity
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,4 +52,4 @@ public class Ingredient {
     public int hashCode() {
         return Objects.hash(id);
     }
-}
+}*/

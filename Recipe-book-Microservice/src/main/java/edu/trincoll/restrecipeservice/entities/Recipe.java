@@ -1,10 +1,8 @@
 package edu.trincoll.restrecipeservice.entities;
 
 import edu.trincoll.restrecipeservice.entities.Ingredient;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +11,11 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    List<Ingredient> ingredientList = new ArrayList<>();
+    String ingredientList;
+
     String name;
-    List<String> steps = new ArrayList<>();
+
+    String steps;
 
     public Long getId() {
         return id;
@@ -25,11 +25,11 @@ public class Recipe {
         this.id = id;
     }
 
-    public List<Ingredient> getIngredientList() {
+    public String getIngredientList() {
         return ingredientList;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
+    public void setIngredientList(String ingredientList) {
         this.ingredientList = ingredientList;
     }
 
@@ -41,11 +41,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public List<String> getSteps() {
+    public String getSteps() {
         return steps;
     }
 
-    public void setSteps(List<String> steps) {
+    public void setSteps(String steps) {
         this.steps = steps;
     }
 }
