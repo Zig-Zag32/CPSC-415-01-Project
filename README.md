@@ -92,8 +92,7 @@ Ollama on Cluster:
 ## Getting started
 This project is designed as a microservice-based application that can be deployed and run on Kubernetes.  
 
-User access of MS5: http://34.111.130.246/  
-User access of Ghost:   
+User access: http://34.111.130.246/   
 
 For detailed instructions on deploying this application on Kubernetes, please refer to the README file in the `k8s` folder. 
 
