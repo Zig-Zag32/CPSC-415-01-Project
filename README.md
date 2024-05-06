@@ -42,29 +42,28 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - With CRUD operations for the recipe book.  
 
 - [ ] MS 3: Recipe recommender(Jeff*).
-    - Capable of invoking the `read` database methods from MS 1 to access ingredients inventory data.
-    - Generates Recipe based on ingredients inventory data, powered by LLM llama 2  
+    - Calling the `read` database methods from MS 1 to access ingredients inventory data.
+    - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
+    - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
 
 - [ ] MS 4: Shopping list generator(Jeff*).
-    - Capable of invoking the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
-    - Capable of invoking the `read` database methods from MS 1 to find our what ingredients we already have.
+    - Calling the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
+    - Calling the `read` database methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
 - [ ] MS 5: Headless MS  
-    - MS 5 contains UI.
-    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend.  
+    - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend (Ghost).  
 
 
 
-Database module will store user data on the cloud
-![Structure diagram](images/UML.png)
+
+![Component Diagram](images/UML.png)
 
 ## Technologies
-- Microservices: Spring Boot, JavaScript Express
-- Database: MySQL
+- Microservices: Spring Boot, Node.js
 - HTML/CSS/JavaScript
-- LLM: Llama2
+- LLM: Llama2, Chat GPT 3.5-turbo (Open AI API)
 - Docker for Containerization
 - Kubernetes for Container Orchestration
 

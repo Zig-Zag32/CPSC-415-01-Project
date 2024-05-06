@@ -1,5 +1,5 @@
 # Recommend-Recipe-Microservice
-This Microservice gets the stock of the user from Microservice 1 and sends it to LLM llama 2 with a prompt, getting a recipe recommend back which only uses stuff in the stock. 
+This Microservice gets the stock of the user from Microservice 1 and sends it to LLM llama 2 or Chat GPT 3.5-turbo with a prompt, getting a recipe recommend back which only uses stuff in the stock. 
 
 ## Prerequisites
 1. Docker Desktop
