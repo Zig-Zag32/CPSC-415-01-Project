@@ -90,5 +90,8 @@ Configuration Diagram:
 ## Getting started
 This project is designed as a microservice-based application that can be deployed and run on Kubernetes.  
 
-For detailed instructions on setting up the development environment and deploying this application, please refer to the README file in the `k8s` folder. 
+User access of MS5: http://34.111.130.246/  
+User access of Ghost:   
+
+For detailed instructions on deploying this application on Kubernetes, please refer to the README file in the `k8s` folder. 
 
