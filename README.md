@@ -12,31 +12,6 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 - [ ] MS 1: REST food item service(George*). 
     - With CRUD operations for the current kitchen stock.
-    - **To Run This Microservice In a Docker Container**:
-        1. If not done already, clone this repository to a local directory of your choice:
-           ```
-           git clone https://github.com/Zig-Zag32/CPSC-415-01-Project
-           ```
-        2. Navigate to this microservice's directory:
-           ```
-           cd Kitchen-Inventory-Microservice
-           ```
-        3. Run Gradle build:
-           ```
-           ./gradlew build
-           ```
-        4. Build a docker image of this microservice:
-           ```
-           docker build -t kitchen-inventory-microservice .
-           ```
-        5. Run this docker image in a container on port 8080:
-           ```
-           docker run -d -p 8080:8080 kitchen-inventory-microservice
-           ```
-        6. In a browser, navigate to the visual API:
-           ```
-           http://localhost:8080/swagger-ui/index.html
-           ```
 
 - [ ] MS 2: REST recipe service(Ibsa*).
     - With CRUD operations for the recipe book.  
@@ -56,7 +31,6 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - MS 5 is a headless microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs for the frontend (Ghost).  
 
 
-
 Component Diagram:
 ![Component Diagram](images/componentUML.png)  
 
@@ -67,11 +41,12 @@ Ollama on Cluster:
 ![ollama](images/ollama.png)
 
 ## Technologies
-- Microservices: Spring Boot, Node.js
-- HTML/CSS/JavaScript
-- LLM: Llama2, Chat GPT 3.5-turbo (Open AI API)
-- Docker for Containerization
-- Kubernetes for Container Orchestration
+- Microservices' source code: Spring Boot, Node.js.
+- Ghost (Internal API): for posting blogs based on recommended recipes.
+- Spoonacular API (External API): for getting a random recipes and computing shopping list.
+- LLM: Ollama + Llama2 (Internal API), Chat GPT 3.5-turbo (External API): for generating a recipe recommendation.
+- Docker desktop: for Containerization.
+- Kubernetes: for Container Orchestration.
 
 ## UI Layout
 - Landing page will have centralized buttons to navigate to each microservice.
@@ -90,7 +65,7 @@ Ollama on Cluster:
 6. Week 15(only two days): May 7 Course Project Presentations
 
 ## Getting started
-This project is designed as a microservice-based application that can be deployed and run on Kubernetes.  
+This project is designed as a microservice-based application that can be deployed and run on Kubernetes. 
 
 User access: http://34.111.130.246/   
 
