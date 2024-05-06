@@ -63,12 +63,14 @@ Ollama on Cluster:
 3. Week 12: Get each microservice running and containerize them
 4. Week 13: Get everything running correctly on the docker desktop cluster.
 5. Week 14: Deploy everything to the GKE cluster. 
-6. Week 15(only two days): May 7 Course Project Presentations
+6. Week 15(only two days): May 7 Course Project Presentations.  
 
 ## Getting started
-This project is designed as a microservice-based application that can be deployed and run on Kubernetes. 
+### User access: 
+http://34.111.130.246/  
 
-User access: http://34.111.130.246/   
+### Deploying instructions:   
+This project is a microservice-based application designed to be deployed and run on Kubernetes. To deploy it, you'll need either Docker Desktop (with Kubernetes enabled) or a standalone Kubernetes cluster.
 
 To deploy this application on Kubernetes, using this command (ONLY ONE COMMAND!AND IT DEPLOY EVERYTHING!!!):
 ```
