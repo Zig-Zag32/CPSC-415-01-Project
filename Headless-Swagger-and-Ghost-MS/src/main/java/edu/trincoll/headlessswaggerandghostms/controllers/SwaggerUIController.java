@@ -3,36 +3,30 @@ package edu.trincoll.headlessswaggerandghostms.controllers;
 import edu.trincoll.headlessswaggerandghostms.records.KitchenItem;
 import edu.trincoll.headlessswaggerandghostms.records.RecipeRecommendationResponse;
 import edu.trincoll.headlessswaggerandghostms.records.SpoonacularRecipeResponse;
-import edu.trincoll.headlessswaggerandghostms.records.SpoonacularRecipeResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @RestController
-public class HeadlessController
+public class SwaggerUIController
 {
     @Value("${MS1_BASE_URL:${ms1_base_url}}")
     private String ms1BaseUrl;
     @Value("${MS3_BASE_URL:${ms3_base_url}}")
     private String ms3BaseUrl;
 
-    private static final Logger log = LoggerFactory.getLogger(HeadlessController.class);
+    private static final Logger log = LoggerFactory.getLogger(SwaggerUIController.class);
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder)
