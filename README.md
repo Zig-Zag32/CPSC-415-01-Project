@@ -79,12 +79,12 @@ Configuration Diagram:
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
 - The recommendation pages will have a generate button, as well as a display for the result.  
 
-## Milestones(34 days left)
-1. Week 10: 
+## Milestones (2 days left)
+1. Week 10: set up component diagram.
 2. Week 11: get MVP services working. Not necessarily correctly, but communicating.
-3. Week 12:
-4. Week 13: 
-5. Week 14: 
+3. Week 12: get each microservice running and containerize them
+4. Week 13: get everything running correctly on the docker desktop cluster.
+5. Week 14: deploy everything to the GKE cluster. 
 6. Week 15(only two days): May 7 Course Project Presentations
 
 ## Getting started
