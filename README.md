@@ -87,11 +87,8 @@ Configuration Diagram:
 5. Week 14: 
 6. Week 15(only two days): May 7 Course Project Presentations
 
-## Getting stared
-```
+## Getting started
+This project is designed as a microservice-based application that can be deployed and run on Kubernetes.  
 
-```
-## Docker
-```
+For detailed instructions on setting up the development environment and deploying this application, please refer to the README file in the `k8s` folder. 
 
-```
