@@ -94,8 +94,11 @@ This project is designed as a microservice-based application that can be deploye
 
 User access: http://34.111.130.246/   
 
-To deploy this application on Kubernetes, using this command:
+To deploy this application on Kubernetes, using this command (ONLY ONE COMMAND!!!):
 ```
-kubectl apply -f /k8s
+kubectl apply -f k8s 
 ```
-
+To delete this application on Kubernetes, using this command (ONLY ONE COMMAND!!!):
+```
+kubectl delete -f k8s 
+```
