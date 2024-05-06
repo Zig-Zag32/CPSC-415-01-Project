@@ -94,5 +94,8 @@ This project is designed as a microservice-based application that can be deploye
 
 User access: http://34.111.130.246/   
 
-For detailed instructions on deploying this application on Kubernetes, please refer to the README file in the `k8s` folder. 
+To deploy this application on Kubernetes, using this command:
+```
+kubectl apply -f /k8s
+```
 
