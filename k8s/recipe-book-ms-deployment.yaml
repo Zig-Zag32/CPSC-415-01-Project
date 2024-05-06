@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krx-recipe-book-ms
+  namespace: krx-recipe-book-ms
+  labels:
+    app: krx-recipe-book-ms
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: krx-recipe-book-ms
+  template:
+    metadata:
+      labels:
+        app: krx-recipe-book-ms
+    spec:
+      containers:
+        - name: recipe-book-ms-container
+          image: zigzag32/recipe-book-microservice
+          imagePullPolicy: Always
+          ports:
+            - name: krx-ms2-port
+              containerPort: 8080
+          #envFrom:
+          #- configMapRef:
+          #    name: my-config
