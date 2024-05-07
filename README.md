@@ -10,13 +10,13 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 
 ## Microservices
 
-- [ ] MS 1: REST food item service(George*). :apple: 
+- [ ] MS 1: REST food item service (George*) :apple: 
     - With CRUD operations for the current kitchen stock.
 
-- [ ] MS 2: REST recipe service(Ibsa*). :banana: 
+- [ ] MS 2: REST recipe service (Ibsa*) :banana: 
     - With CRUD operations for the recipe book.  
 
-- [ ] MS 3: Recipe recommender(Jeff*). :strawberry:
+- [ ] MS 3: Recipe recommender (Jeff*) :strawberry:
     - Calling the `GET` methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
     - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
@@ -25,17 +25,17 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - Here is what the Swagger page for openaiRecipe1 API endpoint should look like:
     ![Swagger page for openaiRecipe1 AP](images/openai.png) 
 
-- [ ] MS 4: Shopping list generator(Jeff*).
+- [ ] MS 4: Shopping list generator (Jeff*)
     - Calling the `GET` methods from MS 2 to find out what ingredients we need for cooking certain recipe.
     - Calling the `GET` methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
-- [ ] MS 5: Swagger Interface(George*). :grapes: 
+- [ ] MS 5: Swagger Interface (George*) :grapes: 
     - MS 5 is a microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs in Swagger UI.  
     - MS 5 is able to call the Ghost API (internal API) to post blogs based on recommended recipes.  
 
-- [ ] Ghost: (Prof.Jonathan*). :beer: 
+- [ ] Ghost: (Prof.Jonathan*) :beer: 
     - We are using the Ghost to post blogs based on recommended recipes following those steps:
         - Step 1: APIs of MS 3 are called by MS 5.
         - Step 2: MS 3 gets stored food information from MS1 and sends it to Chat GPT 3.5-turbo with a prompt.
