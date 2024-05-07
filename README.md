@@ -8,15 +8,15 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
 - Jeff Cui
 - Ibsa Tassew Geleta
 
-## Microservices :smile: 
+## Microservices :apple: 
 
-- [ ] MS 1: REST food item service (George*) :apple: 
+- [ ] MS 1: REST food item service (George*)
     - With CRUD operations for the current kitchen stock.
 
-- [ ] MS 2: REST recipe service (Ibsa*) :banana: 
+- [ ] MS 2: REST recipe service (Ibsa*)
     - With CRUD operations for the recipe book.  
 
-- [ ] MS 3: Recipe recommender (Jeff*) :strawberry:
+- [ ] MS 3: Recipe recommender (Jeff*)
     - Calling the `GET` methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
     - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
@@ -31,7 +31,7 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
-- [ ] MS 5: Swagger Interface (George*) :grapes: 
+- [ ] MS 5: Swagger Interface (George*)
     - MS 5 is a microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs in Swagger UI.  
     - MS 5 is able to call the Ghost API (internal API) to post blogs based on recommended recipes.  
 
