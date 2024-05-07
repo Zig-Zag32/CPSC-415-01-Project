@@ -91,7 +91,7 @@ Ollama on the GKE Cluster:
 ### JavaScript Dependencies
 - **axios**: HTTP client library for making API requests.
 - **express**: Web framework for Node.js to build web applications.
-- **ollama**: Provides an interface to interact with the Ollama large language model.
+- **ollama**: Provides an interface to interact with large language models.
 - **openai**: Client library for interacting with the OpenAI API.
 - **swagger-jsdoc**: Generates API documentation based on JSDoc comments.
 - **swagger-ui-express**: Middleware to serve Swagger API documentation in Express applications.
