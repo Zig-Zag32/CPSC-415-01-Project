@@ -56,21 +56,66 @@ Ollama on the GKE Cluster:
 ![ollama](images/ollama.png)
 
 ## Dependencies and Technologies
-- Microservices' source code: 
-    - Spring Boot, Node.js.
-- Ghost (Internal API): 
-    - For posting blogs based on recommended recipes.
-- Spoonacular API (External API): 
-    - For getting a random recipes and computing shopping list.
-- LLM: 
-    - Ollama + Llama2 (Internal API), 
-        - For generating a recipe recommendation.
-    - Chat GPT 3.5-turbo (External API): 
-        - For generating a recipe recommendation.
-- Docker desktop: 
-    - For Containerization.
-- Kubernetes: 
-    - For Container Orchestration.
+
+- **Microservices' Source Code**:
+  - **Spring Boot**: A framework used for creating Java-based microservices.
+  - **Node.js**: A JavaScript runtime used for server-side microservices development.
+
+- **Ghost (Internal API)**:
+  - An API used for posting blogs based on recommended recipes.
+
+- **Spoonacular API (External API)**:
+  - An API used for obtaining random recipes and computing shopping lists.
+
+
+- **LLM (Large Language Models)**:
+  - **Ollama + Llama2 (Internal API)**: For generating a recipe recommendation.
+  - **Chat GPT 3.5-turbo (External API)**: For generating a recipe recommendation.
+
+- **Docker Desktop**:
+  - Used for containerization.
+
+- **Kubernetes**:
+  - Used for container orchestration.
+
+## Java Dependencies and Technologies
+
+### Plugins
+- `id 'java'`: Standard plugin to support Java projects.
+- `id 'org.springframework.boot' version '3.2.5'`: Spring Boot plugin to simplify building and configuring Spring Boot applications.
+- `id 'io.spring.dependency-management' version '1.1.4'`: Dependency management plugin provided by Spring to handle version conflicts.
+
+### Repositories
+- `mavenCentral`: Maven Central Repository serves as the source for third-party libraries.
+
+### Java Dependencies
+- **Spring Boot Starter Libraries**:
+  - `spring-boot-starter-validation`: Provides validation functionality using Hibernate Validator or other JSR-380 compliant validation frameworks.
+  - `spring-boot-starter-web`: For developing Spring MVC and RESTful API web applications.
+  - `spring-boot-starter-webflux`: Enables support for building reactive web applications using Spring WebFlux.
+
+- **Other Libraries**:
+  - `springdoc-openapi-starter-webmvc-ui`: Generates OpenAPI-compliant API documentation for WebMVC applications.
+  - `spring-boot-devtools`: Provides auto-restart and other debugging features during development.
+  - `spring-boot-starter-test`: Comprehensive testing support using JUnit, Mockito, and Spring TestContext Framework.
+
+## JavaScript Dependencies and Technologies
+
+### Package Metadata
+- **Name**: `trincollbot`
+- **Version**: `1.0.0`
+- **Description**: A bot that provides information about Trincoll's school.
+- **Main File**: `app.js`
+- **Author**: `JeffC`
+
+### JavaScript Dependencies
+- **axios**: HTTP client library for making API requests.
+- **express**: Web framework for Node.js to build web applications.
+- **ollama**: Provides an interface to interact with the Ollama large language model.
+- **openai**: Client library for interacting with the OpenAI API.
+- **swagger-jsdoc**: Generates API documentation based on JSDoc comments.
+- **swagger-ui-express**: Middleware to serve Swagger API documentation in Express applications.
+
 
 ## UI Layout
 - Landing page will have centralized buttons to navigate to each microservice.
