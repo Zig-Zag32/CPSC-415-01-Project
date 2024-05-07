@@ -101,3 +101,15 @@ To delete this application on Kubernetes, using this command:
 ```
 kubectl delete -f k8s 
 ```
+
+## Citations
+1. **ChatGPT-4**: The ChatGPT-4 language model is an advanced generative AI system developed by OpenAI.
+2. **Claude 3 Opus**: Claude 3 Opus is an AI model by Anthropic with conversational capabilities.
+3. **Sock Shop Demo**: This project references the `sock-shop-demo` repository for microservices demonstration purposes:
+   - Repository: [Sock Shop Demo](https://github.com/ocp-power-demos/sock-shop-demo)
+4. **LLaMA 2**: For information about the LLaMA 2 model, refer to the Hugging Face blog post:
+   - Blog Post: [Introducing LLaMA 2](https://huggingface.co/blog/llama2)
+5. **LLaMA 2 Prompt Formatting**: For a guide to formatting prompts for LLaMA 2, check out this Reddit post:
+   - Reddit Post: [Get LLaMA 2 Prompt Format Right](https://www.reddit.com/r/LocalLLaMA/comments/155po2p/get_llama_2_prompt_format_right/)
+6. **Kubernetes Examples**: This project also draws inspiration from the Kubernetes examples repository:
+   - Repository: [Kubernetes Examples](https://github.com/kubernetes/examples)
