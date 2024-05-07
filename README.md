@@ -130,10 +130,26 @@ Ollama on the GKE Cluster:
 ### Deploying instructions:   
 This project is a microservice-based application designed to be deployed and run on Kubernetes. To deploy it, you'll need either Docker Desktop (with Kubernetes enabled) or a standalone Kubernetes cluster. :wink: 
 
+First, clone this repository:
+```
+git clone https://github.com/Zig-Zag32/CPSC-415-01-Project
+```
+and navigate to the root directory of this project on your local device.
+
 To deploy this application on Kubernetes, using this command (One command to deploy everything :rocket:  :rocket:  :rocket: ):
 ```
 kubectl apply -f k8s 
 ```
+It takes about one minute for everything to deploy. You can check the status of all the pods on the cluster with 
+```
+kubectl get pods -A
+```
+Once all pods have a Ready status of 1/1, access the front end on the central Swagger UI by port forwarding with the following command:
+```
+kubectl port-forward service/headless-swagger-ghost-service -n krx-headless-swagger-ghost-ms
+```
+Then navigate to http://localhost:8090/swagger-ui/index.html in a browser to interact with the Swagger UI.
+
 To delete this application on Kubernetes, using this command:
 ```
 kubectl delete -f k8s 
