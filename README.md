@@ -17,19 +17,29 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - With CRUD operations for the recipe book.  
 
 - [ ] MS 3: Recipe recommender(Jeff*).
-    - Calling the `read` database methods from MS 1 to access ingredients inventory data.
+    - Calling the `read` methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
     - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
 
 - [ ] MS 4: Shopping list generator(Jeff*).
-    - Calling the `read` database methods from MS 2 to find out what ingredients we need for cooking certain recipe.
-    - Calling the `read` database methods from MS 1 to find our what ingredients we already have.
+    - Calling the `read` methods from MS 2 to find out what ingredients we need for cooking certain recipe.
+    - Calling the `read` methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
-- [ ] MS 5: Swagger Interface  
+- [ ] MS 5: Swagger Interface(George*).  
     - MS 5 is a microservice that integrates functionalities from Microservices 1, 2, 3, and 4, providing a unified set of APIs in Swagger UI.  
-    - MS 5 is able to call the Ghost API (internal API) to post blogs based on recommended recipes.
+    - MS 5 is able to call the Ghost API (internal API) to post blogs based on recommended recipes.  
+
+- [ ] Ghost. 
+    - 
+    - Step 1: APIs of MS 3 are called by MS 5.
+    - Step 2: MS 3 gets stored food information from MS1 and sends it to Chat GPT 3.5-turbo with a prompt.
+    - Step 3: Chat GPT 3.5 sends a JSON response(a recipe).
+    - Step 3: MS 3 sends back a JSON response to MS 5.
+    - Step 4: MS 5 calls Ghost API and sends the JSON response to it.
+    - Step 5: Ghost posts a blog based on MS 3's JSON response on http://34.49.160.195/.
+
 
 
 Component Diagram:
@@ -42,12 +52,21 @@ Ollama on Cluster:
 ![ollama](images/ollama.png)
 
 ## Technologies
-- Microservices' source code: Spring Boot, Node.js.
-- Ghost (Internal API): for posting blogs based on recommended recipes.
-- Spoonacular API (External API): for getting a random recipes and computing shopping list.
-- LLM: Ollama + Llama2 (Internal API), Chat GPT 3.5-turbo (External API): for generating a recipe recommendation.
-- Docker desktop: for Containerization.
-- Kubernetes: for Container Orchestration.
+- Microservices' source code: 
+    - Spring Boot, Node.js.
+- Ghost (Internal API): 
+    - For posting blogs based on recommended recipes.
+- Spoonacular API (External API): 
+    - For getting a random recipes and computing shopping list.
+- LLM: 
+    - Ollama + Llama2 (Internal API), 
+        - For generating a recipe recommendation.
+    - Chat GPT 3.5-turbo (External API): 
+        - For generating a recipe recommendation.
+- Docker desktop: 
+    - For Containerization.
+- Kubernetes: 
+    - For Container Orchestration.
 
 ## UI Layout
 - Landing page will have centralized buttons to navigate to each microservice.
@@ -67,7 +86,9 @@ Ollama on Cluster:
 
 ## Getting started
 ### User access: 
-http://34.111.130.246/  
+1. MS 5: http://34.111.130.246/  
+
+2. Ghost: http://34.49.160.195/
 
 ### Deploying instructions:   
 This project is a microservice-based application designed to be deployed and run on Kubernetes. To deploy it, you'll need either Docker Desktop (with Kubernetes enabled) or a standalone Kubernetes cluster.
