@@ -137,6 +137,13 @@ To delete this application on Kubernetes, using this command:
 kubectl delete -f k8s 
 ```
 
+## Future Features to be Implemented
+1. Post recommendations to Ghost (fix bug).
+2. Shopping list generator.
+3. Change recipe searches from by ID to by name.
+4. More coordination between MS1 and MS2.
+
+
 ## Citations :bulb: 
 1. **ChatGPT-4**: The ChatGPT-4 language model is an advanced generative AI system developed by OpenAI.
 2. **Claude 3 Opus**: Claude 3 Opus is an AI model by Anthropic with conversational capabilities.
