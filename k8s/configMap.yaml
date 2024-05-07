@@ -68,3 +68,6 @@ data:
   ms3-url: "http://recommend-recipe-ms-service.krx-recommend-recipe-ms:2001"
   ms4-url: "http://generating-shopping-list-ms-service.krx-generating-shopping-list-ms:2002"
   ms5-url: "http://headless-swagger-ghost-ms-service.krx-headless-swagger-ghost-ms:8090"
+  ghost-api-key: "662ec531ca930f0001c45a27:620f038b61cccfbf5580989212b3eaa8222d763aa0ce1116a3c7f8af43d711a4"
+  ghost-host: "ghost.blog"
+  ghost-port: "2368"

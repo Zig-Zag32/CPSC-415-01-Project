@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: recipe-book-ms-container
-          image: zigzag32/recipe-book-microservice
+          image: zigzag32/recipe-book-microservice:1.0.0
           imagePullPolicy: Always
           ports:
             - name: krx-ms2-port

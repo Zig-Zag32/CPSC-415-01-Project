@@ -3,6 +3,7 @@ package edu.trincoll.headlessswaggerandghostms.controllers;
 import edu.trincoll.headlessswaggerandghostms.records.KitchenItem;
 import edu.trincoll.headlessswaggerandghostms.records.RecipeRecommendationResponse;
 import edu.trincoll.headlessswaggerandghostms.records.SpoonacularRecipeResponse;
+import edu.trincoll.headlessswaggerandghostms.records.Recipe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,8 +24,16 @@ public class SwaggerUIController
 {
     @Value("${MS1_BASE_URL:${ms1_base_url}}")
     private String ms1BaseUrl;
+    @Value("${MS2_BASE_URL:${ms2_base_url}}")
+    private String ms2BaseUrl;
     @Value("${MS3_BASE_URL:${ms3_base_url}}")
     private String ms3BaseUrl;
+    @Value("${GHOST_API_KEY:not-available}")
+    private String ghostApiKey;
+    @Value("${GHOST_HOST:not-available}")
+    private String ghostHost;
+    @Value("${GHOST_PORT:not-available}")
+    private String ghostPort;
 
     private static final Logger log = LoggerFactory.getLogger(SwaggerUIController.class);
 
@@ -110,6 +119,83 @@ public class SwaggerUIController
                 .bodyToMono(KitchenItem.class);
     }
 
+    // MS2 Endpoints
+    @GetMapping("/recipes")
+    public Mono<List<Recipe>> getAllRecipes() {
+        String url = ms2BaseUrl + "/recipes";
+        log.info("URL: " + url);
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+
+        return client
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Recipe>>() {
+                });
+    }
+
+    @GetMapping("/recipes/{id}")
+    public Mono<Recipe> getRecipeById(@PathVariable String id) {
+        String url = ms2BaseUrl + "/recipes/" + id;
+        log.info("URL: " + url);
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(Recipe.class);
+    }
+
+    @DeleteMapping("/recipes/{id}")
+    public Mono<Void> deleteRecipeById(@PathVariable String id) {
+        String url = ms2BaseUrl + "/recipes/" + id;
+        log.info("URL: " + url);
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .delete()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(Void.class);
+    }
+
+    @PostMapping("/recipes")
+    public Mono<Recipe> createRecipe(@RequestBody Recipe recipe) {
+        String url = ms2BaseUrl + "/recipes";
+        log.info("URL: " + url);
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .post()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(recipe))
+                .retrieve()
+                .bodyToMono(Recipe.class);
+    }
+
+    @PutMapping("/recipes/{id}")
+    public Mono<Recipe> updateRecipe(@PathVariable String id, @RequestBody Recipe recipeUpdate) {
+        String url = ms2BaseUrl + "/recipes/" + id;
+        log.info("URL: " + url);
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .build();
+        return client
+                .put()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(recipeUpdate))
+                .retrieve()
+                .bodyToMono(Recipe.class);
+    }
+
     // MS3 Endpoints
     @PostMapping("/getRandomRecipe")
     public Mono<SpoonacularRecipeResponse> getRandomRecipe()
@@ -141,6 +227,60 @@ public class SwaggerUIController
                 .bodyToMono(RecipeRecommendationResponse.class)
                 .map(recipeRecommendationResponse -> new RecipeRecommendationResponse(recipeRecommendationResponse.text().replace("\n", " ")));
     }
+
+    // Posting to Ghost
+    /*private void postToGhost(String content) {
+        String[] parts = ghostApiKey.split(":");
+        String id = parts[0];
+        String secret = parts[1];
+
+        long currentTime = System.currentTimeMillis() / 1000;
+        LocalDate expirationDate = LocalDate.now().plus(5, ChronoUnit.MINUTES);
+        long expirationTime = expirationDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+
+        Map<String, Object> header = new HashMap<>();
+        header.put("alg", "HS256");
+        header.put("typ", "JWT");
+        header.put("kid", id);
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("iat", currentTime);
+        payload.put("exp", expirationTime);
+        payload.put("aud", "/admin/");
+
+        String token = Jwts.builder()
+                .setHeader(header)
+                .setClaims(payload)
+                .signWith(SignatureAlgorithm.HS256, secret.getBytes(StandardCharsets.UTF_8))
+                .compact();
+
+        String ghostHost;
+        String ghostPort;
+
+        if (shouldUseInternalUrl()) {
+            ghostHost = GHOST_HOST_INTERNAL;
+            ghostPort = GHOST_PORT_INTERNAL;
+        } else {
+            ghostHost = GHOST_HOST_EXTERNAL;
+            ghostPort = GHOST_PORT_EXTERNAL;
+        }
+
+        String ghostUrl = "http://" + ghostHost + ":" + ghostPort + "/ghost/api/admin/posts/";
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Ghost " + token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Map<String, Object> requestBody = new HashMap<>();
+        Map<String, Object> post = new HashMap<>();
+        post.put("title", "Recipe Recommendation");
+        post.put("content", content);
+        requestBody.put("posts", new Object[]{post});
+
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForObject(ghostUrl, requestEntity, String.class);
+    }*/
 
     // Health endpoint for Kubernetes ingress
     @GetMapping("/health")

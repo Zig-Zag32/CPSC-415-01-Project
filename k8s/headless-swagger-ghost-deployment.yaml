@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: headless-swagger-ghost-container
-        image: zigzag32/headless-swagger-and-ghost-ms:1.0.11
+        image: zigzag32/headless-swagger-and-ghost-ms:1.0.12
         imagePullPolicy: Always
         resources:
           requests:
@@ -34,12 +34,32 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: ms5-configmap   
-                key: ms1-url          
+                key: ms1-url
+          - name: MS2_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: ms5-configmap
+                key: ms2-url
           - name: MS3_BASE_URL
             valueFrom:
               configMapKeyRef:
                 name: ms5-configmap
                 key: ms3-url
+          - name: GHOST_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: ms5-configmap
+                key: ghost-api-key
+          - name: GHOST_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: ms5-configmap
+                key: ghost-host
+          - name: GHOST_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: ms5-configmap
+                key: ghost-port
         readinessProbe:
           httpGet:
             path: /health
