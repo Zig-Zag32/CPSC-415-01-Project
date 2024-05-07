@@ -23,6 +23,7 @@ A simple usage scenario could look like the following:
 - [x] *MS 2: REST recipe service (Ibsa)
     - With CRUD operations for the recipe book.
     - kubectl port-forward service/krx-recipe-book-ms 8080:8080 -n krx-recipe-book-ms
+    - http://localhost:8080/swagger-ui/index.html
 
 - [x] *MS 3: Recipe recommender (Jeff)
     - Calling the `GET` methods from MS 1 to access ingredients inventory data.
