@@ -21,7 +21,8 @@ A simple usage scenario could look like the following:
     - With CRUD operations for the current kitchen stock.
 
 - [x] *MS 2: REST recipe service (Ibsa)
-    - With CRUD operations for the recipe book.  
+    - With CRUD operations for the recipe book.
+    - kubectl port-forward service/krx-recipe-book-ms 8080:8080 -n krx-recipe-book-ms
 
 - [x] *MS 3: Recipe recommender (Jeff)
     - Calling the `GET` methods from MS 1 to access ingredients inventory data.
