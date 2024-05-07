@@ -48,7 +48,7 @@ Component Diagram:
 Configuration Diagram:
 ![Configuration Diagram](images/configurationUML.png)  
 
-Ollama on Cluster:
+Ollama on the GKE Cluster:
 ![ollama](images/ollama.png)
 
 ## Technologies
