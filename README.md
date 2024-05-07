@@ -17,13 +17,13 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - With CRUD operations for the recipe book.  
 
 - [ ] MS 3: Recipe recommender(Jeff*).
-    - Calling the `read` methods from MS 1 to access ingredients inventory data.
+    - Calling the `GET` methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
     - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
 
 - [ ] MS 4: Shopping list generator(Jeff*).
-    - Calling the `read` methods from MS 2 to find out what ingredients we need for cooking certain recipe.
-    - Calling the `read` methods from MS 1 to find our what ingredients we already have.
+    - Calling the `GET` methods from MS 2 to find out what ingredients we need for cooking certain recipe.
+    - Calling the `GET` methods from MS 1 to find our what ingredients we already have.
     - Required ingredients - Ingredients in stock = List of missing materials. 
     - Generates a shopping list based on the list of missing materials using [Spoonacular API-Compute Shopping List](https://spoonacular.com/food-api/docs#Compute-Shopping-List)  
 
