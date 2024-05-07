@@ -3,12 +3,12 @@
 
 This project is a simple Recipe Book and Kitchen Inventory service. Recipes and food items all have CRUD operations available to the user, and other functionality may include shopping list recommendations, and recipe recommendations based on current kitchen inventory. The goal of this project is to help provide a user-friendly centralized place that makes life easier for casual kitchen users.
 
-## Group Members
+## Group Members :sunglasses: 
 - George Zack
 - Jeff Cui
 - Ibsa Tassew Geleta
 
-## Microservices
+## Microservices :smile: 
 
 - [ ] MS 1: REST food item service (George*) :apple: 
     - With CRUD operations for the current kitchen stock.
@@ -55,7 +55,7 @@ Configuration Diagram:
 Ollama on the GKE Cluster:
 ![ollama](images/ollama.png)
 
-## Dependencies and Technologies
+## Dependencies and Technologies :gear: 
 
 - **Microservices' Source Code**:
   - **Spring Boot**: A framework used for creating Java-based microservices.
@@ -105,7 +105,7 @@ Ollama on the GKE Cluster:
 - Each subpage will have input fields for necessary information the user will have to input, as well as a display for recipes.
 - The recommendation pages will have a generate button, as well as a display for the result.  
 
-## Milestones (2 days left)
+## Milestones (2 days left) :coffee: 
 1. Week 10: Set up component diagram.
 2. Week 11: Get MVP services working. Not necessarily correctly, but communicating.
 3. Week 12: Get each microservice running and containerize them
@@ -113,7 +113,7 @@ Ollama on the GKE Cluster:
 5. Week 14: Deploy everything to the GKE cluster. 
 6. Week 15(only two days): May 7 Course Project Presentations.  
 
-## Getting started
+## Getting started :rocket: 
 ### User access: 
 1. MS 5: http://34.111.130.246/  
 
