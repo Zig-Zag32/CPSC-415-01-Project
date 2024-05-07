@@ -122,7 +122,8 @@ Ollama on the GKE Cluster:
 ### Deploying instructions:   
 This project is a microservice-based application designed to be deployed and run on Kubernetes. To deploy it, you'll need either Docker Desktop (with Kubernetes enabled) or a standalone Kubernetes cluster.
 
-To deploy this application on Kubernetes, using this command (ONLY ONE COMMAND!AND IT DEPLOY EVERYTHING!:smile: :rocket: :+1:):
+To deploy this application on Kubernetes, using this command (ONLY ONE COMMAND!AND IT DEPLOY EVERYTHING!:smile: :rocket: :+1:
+):
 ```
 kubectl apply -f k8s 
 ```
