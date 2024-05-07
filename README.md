@@ -35,7 +35,7 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - We are using the Ghost to post blogs based on recommended recipes following those steps:
         - Step 1: APIs of MS 3 are called by MS 5.
         - Step 2: MS 3 gets stored food information from MS1 and sends it to Chat GPT 3.5-turbo with a prompt.
-        - Step 3: Chat GPT 3.5 sends a JSON response(a recipe).
+        - Step 3: Chat GPT 3.5 sends back a JSON response(a recipe) to MS 3.
         - Step 3: MS 3 sends back a JSON response to MS 5.
         - Step 4: MS 5 calls Ghost API and sends the JSON response to it.
         - Step 5: Ghost posts a blog based on MS 3's JSON response on http://34.49.160.195/.
