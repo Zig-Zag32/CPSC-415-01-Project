@@ -78,35 +78,15 @@ Ollama on the GKE Cluster:
 - **Kubernetes**:
   - Used for container orchestration.
 
-## Java Dependencies and Technologies
-
-### Plugins
-- `id 'java'`: Standard plugin to support Java projects.
-- `id 'org.springframework.boot' version '3.2.5'`: Spring Boot plugin to simplify building and configuring Spring Boot applications.
-- `id 'io.spring.dependency-management' version '1.1.4'`: Dependency management plugin provided by Spring to handle version conflicts.
-
-### Repositories
-- `mavenCentral`: Maven Central Repository serves as the source for third-party libraries.
-
 ### Java Dependencies
 - **Spring Boot Starter Libraries**:
   - `spring-boot-starter-validation`: Provides validation functionality using Hibernate Validator or other JSR-380 compliant validation frameworks.
   - `spring-boot-starter-web`: For developing Spring MVC and RESTful API web applications.
   - `spring-boot-starter-webflux`: Enables support for building reactive web applications using Spring WebFlux.
-
 - **Other Libraries**:
   - `springdoc-openapi-starter-webmvc-ui`: Generates OpenAPI-compliant API documentation for WebMVC applications.
   - `spring-boot-devtools`: Provides auto-restart and other debugging features during development.
   - `spring-boot-starter-test`: Comprehensive testing support using JUnit, Mockito, and Spring TestContext Framework.
-
-## JavaScript Dependencies and Technologies
-
-### Package Metadata
-- **Name**: `trincollbot`
-- **Version**: `1.0.0`
-- **Description**: A bot that provides information about Trincoll's school.
-- **Main File**: `app.js`
-- **Author**: `JeffC`
 
 ### JavaScript Dependencies
 - **axios**: HTTP client library for making API requests.
