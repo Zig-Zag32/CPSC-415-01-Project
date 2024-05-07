@@ -20,6 +20,10 @@ This project is a simple Recipe Book and Kitchen Inventory service. Recipes and 
     - Calling the `GET` methods from MS 1 to access ingredients inventory data.
     - Generates Recipe based on ingredients inventory data, powered by LLM llama 2 or Chat GPT 3.5-turbo.
     - Generates a random recipe based on the list of missing materials using [Spoonacular API-Get Random Recipes](https://spoonacular.com/food-api/docs#Get-Random-Recipes) 
+    - Here is what the Swagger page for MS 3 should look like:
+    ![Swagger page for MS 3](images/ms3.png) 
+    - Here is what the Swagger page for openaiRecipe1 API endpoint should look like:
+    ![Swagger page for openaiRecipe1 AP](images/openai.png) 
 
 - [ ] MS 4: Shopping list generator(Jeff*).
     - Calling the `GET` methods from MS 2 to find out what ingredients we need for cooking certain recipe.
@@ -51,7 +55,7 @@ Configuration Diagram:
 Ollama on the GKE Cluster:
 ![ollama](images/ollama.png)
 
-## Technologies
+## Dependencies and Technologies
 - Microservices' source code: 
     - Spring Boot, Node.js.
 - Ghost (Internal API): 
