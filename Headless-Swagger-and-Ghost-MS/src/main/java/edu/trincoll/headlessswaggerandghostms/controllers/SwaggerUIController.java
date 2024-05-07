@@ -4,6 +4,7 @@ import edu.trincoll.headlessswaggerandghostms.records.KitchenItem;
 import edu.trincoll.headlessswaggerandghostms.records.RecipeRecommendationResponse;
 import edu.trincoll.headlessswaggerandghostms.records.SpoonacularRecipeResponse;
 import edu.trincoll.headlessswaggerandghostms.records.Recipe;
+import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +17,19 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SwaggerUIController
@@ -225,18 +237,24 @@ public class SwaggerUIController
                 .contentType(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(RecipeRecommendationResponse.class)
-                .map(recipeRecommendationResponse -> new RecipeRecommendationResponse(recipeRecommendationResponse.text().replace("\n", " ")));
+                .map(recipeRecommendationResponse -> {
+                    String responseText = recipeRecommendationResponse.text().replace("\n", " ");
+                    if (!ghostApiKey.equals("not-available") && !ghostHost.equals("not-available") && !ghostPort.equals("not-available")) {
+                        postToGhost(responseText);
+                    }
+                    return new RecipeRecommendationResponse(responseText);
+                });
     }
 
     // Posting to Ghost
-    /*private void postToGhost(String content) {
+    private void postToGhost(String content) {
         String[] parts = ghostApiKey.split(":");
         String id = parts[0];
         String secret = parts[1];
 
         long currentTime = System.currentTimeMillis() / 1000;
-        LocalDate expirationDate = LocalDate.now().plus(5, ChronoUnit.MINUTES);
-        long expirationTime = expirationDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+        LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
+        long expirationTime = expirationDate.toEpochSecond(ZoneOffset.UTC);
 
         Map<String, Object> header = new HashMap<>();
         header.put("alg", "HS256");
@@ -248,27 +266,15 @@ public class SwaggerUIController
         payload.put("exp", expirationTime);
         payload.put("aud", "/admin/");
 
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+
         String token = Jwts.builder()
                 .setHeader(header)
                 .setClaims(payload)
-                .signWith(SignatureAlgorithm.HS256, secret.getBytes(StandardCharsets.UTF_8))
+                .signWith(secretKey)
                 .compact();
 
-        String ghostHost;
-        String ghostPort;
-
-        if (shouldUseInternalUrl()) {
-            ghostHost = GHOST_HOST_INTERNAL;
-            ghostPort = GHOST_PORT_INTERNAL;
-        } else {
-            ghostHost = GHOST_HOST_EXTERNAL;
-            ghostPort = GHOST_PORT_EXTERNAL;
-        }
-
         String ghostUrl = "http://" + ghostHost + ":" + ghostPort + "/ghost/api/admin/posts/";
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Ghost " + token);
-        headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, Object> post = new HashMap<>();
@@ -276,11 +282,18 @@ public class SwaggerUIController
         post.put("content", content);
         requestBody.put("posts", new Object[]{post});
 
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+        WebClient webClient = WebClient.builder()
+                .baseUrl(ghostUrl)
+                .defaultHeader("Authorization", "Ghost " + token)
+                .defaultHeader("Content-Type", "application/json")
+                .build();
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForObject(ghostUrl, requestEntity, String.class);
-    }*/
+        webClient.post()
+                .body(BodyInserters.fromValue(requestBody))
+                .retrieve()
+                .bodyToMono(String.class)
+                .subscribe(response -> System.out.println("Response from Ghost: " + response));
+    }
 
     // Health endpoint for Kubernetes ingress
     @GetMapping("/health")
